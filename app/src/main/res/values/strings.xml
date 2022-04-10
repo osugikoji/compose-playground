@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Penguin Pay</string>
+    <string name="send_transaction">Start Send transaction</string>
+</resources>
