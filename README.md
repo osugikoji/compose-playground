@@ -4,7 +4,7 @@
 
 # Penguin Pay Challenge
 
-A prototype send transaction SDK in binary format. The project was built with the following stacks:
+A prototype send transaction in binary format SDK. The project was built with the following stacks:
 
 * MVVM
 * Clean Architecture
@@ -23,7 +23,7 @@ penguinPayLauncher.launchSendTransaction(activity)
 
 ## Sample
 
-The [project sample]() demonstrates how to use the SDK in a practical way.
+The [project sample](https://github.com/osugikoji/penguinpay-prototype/tree/master/app) demonstrates how to use the SDK in a practical way.
 
 ## Showcase
 
