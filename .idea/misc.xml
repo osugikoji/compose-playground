@@ -17,6 +17,23 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/penguinpay/send-transaction/src/main/res/layout/item_country.xml" value="0.67" />
         <entry key="..\:/Users/User/AndroidStudioProjects/penguinpay/send-transaction/src/main/res/layout/view_dialog_loading.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/penguinpay/send-transaction/src/main/res/menu/menu_send_transaction.xml" value="0.20520833333333333" />
+        <entry key="..\:/Workspace/penguinpay-prototype/app/src/main/res/layout/activity_main.xml" value="0.18854166666666666" />
+        <entry key="..\:/Workspace/penguinpay-prototype/send-transaction/src/main/res/layout/activity_send_transaction.xml" value="0.25625" />
+        <entry key="..\:/Workspace/penguinpay-prototype/send-transaction/src/main/res/layout/activity_transaction_success.xml" value="0.25625" />
+        <entry key="..\:/Workspace/penguinpay-prototype/send-transaction/src/main/res/layout/fragment_insert_recipient_name.xml" value="0.25625" />
+        <entry key="..\:/Workspace/penguinpay-prototype/send-transaction/src/main/res/layout/fragment_insert_recipient_phone.xml" value="0.25625" />
+        <entry key="..\:/Workspace/penguinpay-prototype/send-transaction/src/main/res/layout/fragment_insert_transaction_value.xml" value="0.25625" />
+        <entry key="..\:/Workspace/penguinpay-prototype/send-transaction/src/main/res/layout/fragment_select_recipient_country.xml" value="0.25625" />
+        <entry key="..\:/Workspace/penguinpay-prototype/send-transaction/src/main/res/layout/fragment_transaction_confirmation.xml" value="0.25625" />
+        <entry key="..\:/Workspace/penguinpay-prototype/send-transaction/src/main/res/layout/view_dialog_loading.xml" value="0.25625" />
+        <entry key="..\:/Workspace/penguinpay-prototype/send-transaction/src/main/res/menu/menu_send_transaction.xml" value="0.25625" />
+        <entry key="..\:/Workspace/playground/domain/src/main/res/drawable/ic_brazil_flag.xml" value="0.1965" />
+        <entry key="..\:/Workspace/playground/domain/src/main/res/drawable/ic_check.xml" value="0.1965" />
+        <entry key="..\:/Workspace/playground/domain/src/main/res/drawable/ic_kenya_flag.xml" value="0.1965" />
+        <entry key="..\:/Workspace/playground/domain/src/main/res/drawable/ic_nigeria_flag.xml" value="0.1965" />
+        <entry key="..\:/Workspace/playground/domain/src/main/res/drawable/ic_tanzania_flag.xml" value="0.1965" />
+        <entry key="..\:/Workspace/playground/domain/src/main/res/drawable/ic_uganda_flag.xml" value="0.1965" />
+        <entry key="..\:/Workspace/playground/transaction/src/main/res/drawable/ic_arrow_left.xml" value="0.1965" />
       </map>
     </option>
   </component>
