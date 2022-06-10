@@ -1,0 +1,18 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Theme -->
+    <style name="Theme.Playground" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorPrimary">@color/primary_main</item>
+        <item name="colorAccent">@color/accent_main</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+
+        <item name="android:statusBarColor">@color/primary_dark</item>
+
+        <!-- Apply InputLayout Styles -->
+        <item name="textInputStyle">@style/Widget.Playground.TextInputLayout</item>
+
+        <!-- Apply Button Styles -->
+        <item name="materialButtonStyle">@style/Widget.Playground.Button</item>
+    </style>
+</resources>

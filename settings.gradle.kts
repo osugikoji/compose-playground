@@ -1,3 +1,3 @@
-rootProject.name = "penguin-pay"
+rootProject.name = "playground"
 include(":app")
-include(":send-transaction")
+include(":transaction")

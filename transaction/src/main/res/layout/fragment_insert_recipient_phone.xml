@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/text_view_title"
+        style="@style/TextAppearance.Playground.Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/insert_recipient_phone_title"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_subtitle"
+        style="@style/TextAppearance.Playground.Subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/insert_recipient_phone_subtitle"
+        android:textColor="@color/gray_medium"
+        app:layout_constraintEnd_toEndOf="@id/text_view_title"
+        app:layout_constraintStart_toStartOf="@id/text_view_title"
+        app:layout_constraintTop_toBottomOf="@id/text_view_title" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_phone_prefix"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="24dp"
+        android:enabled="false"
+        android:hint="@string/insert_recipient_phone_prefix_hint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/input_layout_phone"
+        app:layout_constraintHorizontal_weight="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_subtitle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_phone_prefix"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:inputType="number|text"
+            android:maxLength="4"
+            tools:text="+254" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_phone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/insert_recipient_phone_hint"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="0.7"
+        app:layout_constraintStart_toEndOf="@id/input_layout_phone_prefix"
+        app:layout_constraintTop_toBottomOf="@id/text_view_subtitle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number|text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

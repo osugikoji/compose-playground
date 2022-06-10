@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = Config.COMPILE_SDK_VERSION
 
     defaultConfig {
-        applicationId = "com.penguinpay.prototype"
-        minSdk = 23
-        targetSdk = 31
+        applicationId = "com.playground.sample"
+        minSdk = Config.MIN_SDK_VERSION
+        targetSdk = Config.TARGET_SDK_VERSION
         versionCode = 1
         versionName = "1.0"
 
@@ -38,12 +38,10 @@ android {
 }
 
 dependencies {
-    // General
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.4.1")
-    implementation("com.google.android.material:material:1.5.0")
-    implementation(project(":send-transaction"))
+    implementation(Dependencies.AndroidX.CORE_KTX)
+    implementation(Dependencies.AndroidX.APP_COMPAT)
+    implementation(Dependencies.UI.MATERIAL_DESIGN)
+    implementation(project(":transaction"))
 
-    // Test
-    testImplementation("junit:junit:4.13.2")
+    testImplementation(Dependencies.UnitTest.JUNIT)
 }
