@@ -18,7 +18,6 @@ import com.playground.transaction.presentation.sendtransaction.steps.InsertTrans
 import com.playground.transaction.presentation.sendtransaction.steps.SelectRecipientCountryFragmentDirections
 import com.playground.transaction.presentation.sendtransaction.viewmodel.SendTransactionViewModel
 import com.playground.transaction.presentation.sendtransaction.viewmodel.SendTransactionViewModel.UIState
-import com.playground.transaction.util.popBackStackOrFinish
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 internal class SendTransactionActivity :
@@ -64,7 +63,7 @@ internal class SendTransactionActivity :
     }
 
     private fun setListeners() {
-        binding.toolbar.setNavigationOnClickListener { navController.popBackStackOrFinish(this) }
+        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
         binding.toolbar.setOnMenuItemClickListener { onMenuItemClick(it) }
         binding.buttonNavigation.setOnClickListener { onNextScreen() }
     }

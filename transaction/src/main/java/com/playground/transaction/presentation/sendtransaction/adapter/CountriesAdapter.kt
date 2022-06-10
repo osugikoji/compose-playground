@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.playground.transaction.databinding.ItemCountryBinding
-import com.playground.transaction.domain.model.Country
+import com.playground.domain.model.Country
 
 internal class CountriesAdapter(
     private val onItemClick: (Country) -> Unit = {}

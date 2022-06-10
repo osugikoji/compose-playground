@@ -1,3 +1,7 @@
+plugins {
+    id(Dependencies.Plugin.DETEKT) version Dependencies.DETEKT_VERSION
+}
+
 buildscript {
     repositories {
         mavenLocal()
@@ -6,9 +10,11 @@ buildscript {
     }
 
     dependencies {
-        classpath(Dependencies.Plugin.GRADLE)
-        classpath(Dependencies.Plugin.KOTLIN)
-        classpath(Dependencies.Plugin.NAVIGATION)
+        classpath(Dependencies.Classpath.GRADLE)
+        classpath(Dependencies.Classpath.KOTLIN)
+        classpath(Dependencies.Classpath.NAVIGATION)
+        classpath(Dependencies.Classpath.DETEKT)
+        classpath(Dependencies.Classpath.KTLINT)
     }
 }
 
@@ -18,6 +24,11 @@ allprojects {
         google()
         mavenCentral()
     }
+}
+
+subprojects {
+    apply(plugin = Dependencies.Plugin.DETEKT)
+    apply(plugin = Dependencies.Plugin.KTLINT)
 }
 
 tasks.register("clean", Delete::class) {

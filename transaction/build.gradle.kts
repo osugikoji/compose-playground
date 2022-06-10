@@ -13,12 +13,10 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFile("consumer-rules.pro")
-        buildConfigField("String", "APP_ID", "\"e783f4d11f2b4ca0a78a1062f6e94f2e\"")
-        buildConfigField("String", "BASE_URL", "\"https://openexchangerates.org/\"")
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -48,11 +46,8 @@ dependencies {
     implementation(Dependencies.AndroidX.NAV_UI_KTX)
     implementation(Dependencies.UI.MATERIAL_DESIGN)
     implementation(Dependencies.DI.KOIN)
-    implementation(Dependencies.DataSource.RETROFIT)
-    implementation(Dependencies.DataSource.RETROFIT_CONVERTER)
-    implementation(Dependencies.DataSource.MOSHI)
-    implementation(Dependencies.DataSource.MOSHI_KOTLIN)
-    implementation(Dependencies.DataSource.MOSHI_KOTLIN_CODEGEN)
+    implementation(project(":core"))
+    implementation(project(":domain"))
 
     testImplementation(Dependencies.UnitTest.JUNIT)
     testImplementation(Dependencies.UnitTest.ROBOLECTRIC)

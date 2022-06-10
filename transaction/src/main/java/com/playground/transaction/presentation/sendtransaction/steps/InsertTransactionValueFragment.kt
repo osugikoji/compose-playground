@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import com.playground.transaction.core.MoneyTextWatcher
 import com.playground.transaction.databinding.FragmentInsertTransactionValueBinding
 import com.playground.transaction.di.component.CustomKoinComponent
 import com.playground.transaction.presentation.sendtransaction.viewmodel.SendTransactionViewModel
+import com.playground.core.textwatcher.MoneyTextWatcher
+import com.playground.domain.model.CurrencyCode
 import com.playground.transaction.util.showKeyboard
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -23,7 +24,7 @@ internal class InsertTransactionValueFragment : Fragment(), CustomKoinComponent 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentInsertTransactionValueBinding.inflate(inflater, container, false)
         return binding.root
@@ -42,7 +43,8 @@ internal class InsertTransactionValueFragment : Fragment(), CustomKoinComponent 
 
     private fun restoreState() {
         val transferValue = viewModel.dataHolder.getTransferValueAsCurrency()
-        binding.editTextTransactionValue.addTextChangedListener(MoneyTextWatcher())
+        val moneyTextWatcher = MoneyTextWatcher(CurrencyCode.UNITED_STATES)
+        binding.editTextTransactionValue.addTextChangedListener(moneyTextWatcher)
         binding.editTextTransactionValue.showKeyboard()
         binding.editTextTransactionValue.setText(transferValue)
         viewModel.setTransferValue(transferValue)

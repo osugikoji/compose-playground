@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Countries -->
+    <string name="country_brazil">Brazil</string>
+    <string name="country_kenya">Kenya</string>
+    <string name="country_nigeria">Nigeria</string>
+    <string name="country_tanzania">Tanzania</string>
+    <string name="country_uganda">Uganda</string>
+</resources>

@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.playground.transaction.databinding.FragmentSelectRecipientCountryBinding
 import com.playground.transaction.di.component.CustomKoinComponent
-import com.playground.transaction.domain.model.Country
+import com.playground.domain.model.Country
 import com.playground.transaction.presentation.sendtransaction.adapter.CountriesAdapter
 import com.playground.transaction.presentation.sendtransaction.viewmodel.SendTransactionViewModel
 import com.playground.transaction.util.hideKeyboard

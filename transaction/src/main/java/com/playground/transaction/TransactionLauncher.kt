@@ -8,9 +8,8 @@ interface TransactionLauncher {
 
     companion object {
 
-        fun create(): TransactionLauncher {
-            return TransactionLauncherImpl()
+        fun create(appId: String): TransactionLauncher {
+            return TransactionLauncherImpl(appId)
         }
     }
 }
-

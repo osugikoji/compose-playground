@@ -35,13 +35,6 @@
     <string name="transaction_confirmation_transfer_exchange">Exchange value</string>
     <string name="transaction_confirmation_transfer">Transfer</string>
 
-    <!-- Countries -->
-    <string name="country_brazil">Brazil</string>
-    <string name="country_kenya">Kenya</string>
-    <string name="country_nigeria">Nigeria</string>
-    <string name="country_tanzania">Tanzania</string>
-    <string name="country_uganda">Uganda</string>
-
     <!-- Transaction Success -->
     <string name="transaction_success_title">Transfer executed successfully</string>
     <string name="transaction_success_message">The transfer in the amount of %s was sent successfully.</string>

@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.playground.transaction.core.toCurrencySymbol
-import com.playground.transaction.domain.business.TransactionUseCases
-import com.playground.transaction.domain.model.Country
-import com.playground.transaction.domain.model.SendTransactionDataHolder
+import com.playground.core.extensions.isFullName
+import com.playground.core.extensions.toCurrencyFormat
+import com.playground.domain.model.Country
+import com.playground.transaction.presentation.sendtransaction.model.SendTransactionDataHolder
 import com.playground.transaction.presentation.sendtransaction.model.SendTransactionSummary
-import com.playground.transaction.util.isFullName
+import com.playground.domain.usecase.TransactionUseCases
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
@@ -64,7 +64,7 @@ internal class SendTransactionViewModel(
                 countryName = selectedCountry.countryName,
                 countryIcon = selectedCountry.icon,
                 fullPhoneNumber = dataHolder.getFullPhoneNumber(),
-                exchangedValue = it.toCurrencySymbol(selectedCountry.currencySymbol)
+                exchangedValue = it.toCurrencyFormat(selectedCountry.currencySymbol)
             )
             _uiState.value = UIState.TransactionExchangedSuccess
         }.onFailure { _uiState.value = UIState.Error(it.message.orEmpty()) }

@@ -3,6 +3,7 @@ object Dependencies {
     private const val NAV_VERSION = "2.4.2"
     private const val RETROFIT_VERSION = "2.9.0"
     private const val MOSHI_VERSION = "1.13.0"
+    const val DETEKT_VERSION = "1.20.0"
 
     object AndroidX {
         const val CORE_KTX = "androidx.core:core-ktx:1.8.0"
@@ -34,9 +35,16 @@ object Dependencies {
         const val MOCKK = "io.mockk:mockk:1.12.3"
     }
 
-    object Plugin {
+    object Classpath {
         const val GRADLE = "com.android.tools.build:gradle:7.0.4"
         const val KOTLIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
+        const val DETEKT = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$DETEKT_VERSION"
+        const val KTLINT = "org.jlleitschuh.gradle:ktlint-gradle:10.3.0"
         const val NAVIGATION = "androidx.navigation:navigation-safe-args-gradle-plugin:$NAV_VERSION"
+    }
+
+    object Plugin {
+        const val DETEKT = "io.gitlab.arturbosch.detekt"
+        const val KTLINT = "org.jlleitschuh.gradle.ktlint"
     }
 }
