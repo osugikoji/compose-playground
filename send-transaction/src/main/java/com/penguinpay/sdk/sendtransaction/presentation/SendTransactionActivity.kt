@@ -2,12 +2,12 @@ package com.penguinpay.sdk.sendtransaction.presentation
 
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
+import com.google.android.material.snackbar.Snackbar
 import com.penguinpay.sdk.sendtransaction.R
 import com.penguinpay.sdk.sendtransaction.component.DialogLoading
 import com.penguinpay.sdk.sendtransaction.databinding.ActivitySendTransactionBinding
@@ -44,7 +44,7 @@ internal class SendTransactionActivity :
     override fun onDestinationChanged(
         controller: NavController,
         destination: NavDestination,
-        arguments: Bundle?
+        arguments: Bundle?,
     ) {
         val showButton = destination.id != R.id.select_recipient_country_fragment
         binding.buttonNavigation.isVisible = showButton
@@ -82,7 +82,10 @@ internal class SendTransactionActivity :
                 navController.navigate(direction)
             }
             is UIState.Error -> {
-                Toast.makeText(this, uiState.message, Toast.LENGTH_LONG).show()
+                Snackbar
+                    .make(binding.root, uiState.message, Snackbar.LENGTH_LONG)
+                    .setBackgroundTint(getColor(R.color.status_error_main))
+                    .show()
             }
             UIState.SendTransactionSuccess -> {
                 redirectToSuccessScreen()
@@ -115,7 +118,7 @@ internal class SendTransactionActivity :
     }
 
     private fun redirectToSuccessScreen() {
-        val transferValue = viewModel.dataHolder.transferValue
+        val transferValue = viewModel.dataHolder.getTransferValueAsCurrency()
         val intent = TransactionSuccessActivity.getIntent(this, transferValue)
         startActivity(intent)
         finish()

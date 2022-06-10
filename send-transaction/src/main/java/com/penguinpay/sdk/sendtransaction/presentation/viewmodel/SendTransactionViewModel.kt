@@ -4,22 +4,23 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.penguinpay.sdk.sendtransaction.domain.business.TransactionBusiness
+import com.penguinpay.sdk.sendtransaction.core.toCurrencySymbol
+import com.penguinpay.sdk.sendtransaction.domain.business.TransactionUseCases
 import com.penguinpay.sdk.sendtransaction.domain.model.Country
 import com.penguinpay.sdk.sendtransaction.domain.model.SendTransactionDataHolder
+import com.penguinpay.sdk.sendtransaction.presentation.model.SendTransactionSummary
 import com.penguinpay.sdk.sendtransaction.util.isFullName
-import com.penguinpay.sdk.sendtransaction.util.isValidBinaryValue
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 internal class SendTransactionViewModel(
     private val dispatcher: CoroutineDispatcher,
-    private val transactionBusiness: TransactionBusiness
+    private val transactionUseCase: TransactionUseCases,
 ) : ViewModel() {
 
     val dataHolder = SendTransactionDataHolder()
+
+    lateinit var summary: SendTransactionSummary private set
 
     private val _enableButton = MutableLiveData(false)
     val enableButton: LiveData<Boolean> = _enableButton
@@ -28,8 +29,8 @@ internal class SendTransactionViewModel(
     val uiState: LiveData<UIState> = _uiState
 
     fun setTransferValue(text: String) {
-        dataHolder.transferValue = text
-        _enableButton.value = text.isValidBinaryValue()
+        dataHolder.setTransferValue(text)
+        _enableButton.value = dataHolder.isTransferValueNotEmpty()
     }
 
     fun setRecipientName(text: String) {
@@ -54,19 +55,30 @@ internal class SendTransactionViewModel(
         val transferValue = dataHolder.transferValue
         val selectedCountry = dataHolder.selectedCountry
         _uiState.value = UIState.Loading
-        transactionBusiness.getTransactionExchangedValue(transferValue, selectedCountry)
-            .catch { _uiState.value = UIState.Error(it.message.orEmpty()) }
-            .collect {
-                _uiState.value = UIState.TransactionExchangedSuccess
-                dataHolder.exchangedValue = it
-            }
+        runCatching {
+            transactionUseCase.getExchangedValue(transferValue, selectedCountry.currencySymbol)
+        }.onSuccess {
+            summary = SendTransactionSummary(
+                transferValue = dataHolder.getTransferValueAsCurrency(),
+                recipientName = dataHolder.recipientName,
+                countryName = selectedCountry.countryName,
+                countryIcon = selectedCountry.icon,
+                fullPhoneNumber = dataHolder.getFullPhoneNumber(),
+                exchangedValue = it.toCurrencySymbol(selectedCountry.currencySymbol)
+            )
+            _uiState.value = UIState.TransactionExchangedSuccess
+        }.onFailure { _uiState.value = UIState.Error(it.message.orEmpty()) }
     }
 
     fun sendTransaction() = viewModelScope.launch(dispatcher) {
+        val transferValue = dataHolder.transferValue
+        val fullPhoneNumber = dataHolder.getFullPhoneNumber()
+        val currencySymbol = dataHolder.selectedCountry.currencySymbol
         _uiState.value = UIState.Loading
-        transactionBusiness.sendTransaction(dataHolder)
-            .catch { _uiState.value = UIState.Error(it.message.orEmpty()) }
-            .collect { _uiState.value = UIState.SendTransactionSuccess }
+        runCatching {
+            transactionUseCase.sendTransaction(transferValue, fullPhoneNumber, currencySymbol)
+        }.onSuccess { _uiState.value = UIState.SendTransactionSuccess }
+            .onFailure { _uiState.value = UIState.Error(it.message.orEmpty()) }
     }
 
     sealed class UIState {

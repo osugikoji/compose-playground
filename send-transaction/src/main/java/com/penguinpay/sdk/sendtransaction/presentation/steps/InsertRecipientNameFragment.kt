@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import com.penguinpay.sdk.sendtransaction.R
 import com.penguinpay.sdk.sendtransaction.databinding.FragmentInsertRecipientNameBinding
 import com.penguinpay.sdk.sendtransaction.di.component.CustomKoinComponent
 import com.penguinpay.sdk.sendtransaction.presentation.viewmodel.SendTransactionViewModel
@@ -40,8 +41,11 @@ internal class InsertRecipientNameFragment : Fragment(), CustomKoinComponent {
     }
 
     private fun restoreState() {
-        binding.editTextName.showKeyboard()
         val name = viewModel.dataHolder.recipientName
+        val transferValue = viewModel.dataHolder.getTransferValueAsCurrency()
+        val formattedTransferValue = getString(R.string.insert_recipient_name_title, transferValue)
+        binding.textViewTitle.text = formattedTransferValue
+        binding.editTextName.showKeyboard()
         binding.editTextName.setText(name)
         viewModel.setRecipientName(name)
     }

@@ -38,18 +38,15 @@ internal class TransactionConfirmationFragment : Fragment(), CustomKoinComponent
     }
 
     private fun restoreState() {
-        val transferValue = viewModel.dataHolder.transferValue
-        val recipientName = viewModel.dataHolder.recipientName
-        val country = requireNotNull(viewModel.dataHolder.selectedCountry)
-        val fullPhoneNumber = viewModel.dataHolder.getFullPhoneNumber()
-        val exchangedValue = viewModel.dataHolder.exchangedValue
+        val recipientName = viewModel.summary.recipientName
+        val fullPhoneNumber = viewModel.summary.fullPhoneNumber
+        val exchangedValue = viewModel.summary.exchangedValue
 
-        binding.textViewTransferValue.text =
-            getString(R.string.transaction_confirmation_currency_value, transferValue)
+        binding.textViewTransferValue.text = viewModel.summary.transferValue
         binding.textViewTransferTo.text =
             getString(R.string.transaction_confirmation_transfer_to, recipientName)
-        binding.imageViewCountry.setImageResource(country.icon)
-        binding.textViewCountryValue.setText(country.countryName)
+        binding.imageViewCountry.setImageResource(viewModel.summary.countryIcon)
+        binding.textViewCountryValue.setText(viewModel.summary.countryName)
         binding.textViewPhoneValue.text = fullPhoneNumber
         binding.textViewTransferExchangeValue.text = exchangedValue
     }

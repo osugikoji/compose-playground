@@ -12,4 +12,5 @@
     <color name="gray_light">#E0E0E0</color>
     <color name="gray_extra_light">#F5F5F5</color>
 
+    <color name="status_error_main">#E63746</color>
 </resources>

@@ -9,11 +9,11 @@
 
     <!-- Insert Transaction Value -->
     <string name="insert_transaction_title">What is the transfer value?</string>
-    <string name="insert_transaction_subtitle">Enter a binary value.</string>
+    <string name="insert_transaction_subtitle">Enter a dollar value that you want to send.</string>
     <string name="insert_transaction_hint">Value</string>
 
     <!-- Insert Recipient Name -->
-    <string name="insert_recipient_name_title">Who do you want to send 010101?</string>
+    <string name="insert_recipient_name_title">Who do you want to send %s?</string>
     <string name="insert_recipient_name_subtitle">Enter the recipient first and last name to proceed.</string>
     <string name="insert_recipient_name_hint">Complete name</string>
 
@@ -29,7 +29,6 @@
 
     <!-- Transaction Confirmation -->
     <string name="transaction_confirmation_transferring">Transferring</string>
-    <string name="transaction_confirmation_currency_value">$ %s</string>
     <string name="transaction_confirmation_transfer_to">to %s</string>
     <string name="transaction_confirmation_country">Country</string>
     <string name="transaction_confirmation_phone">Phone number</string>
@@ -37,6 +36,7 @@
     <string name="transaction_confirmation_transfer">Transfer</string>
 
     <!-- Countries -->
+    <string name="country_brazil">Brazil</string>
     <string name="country_kenya">Kenya</string>
     <string name="country_nigeria">Nigeria</string>
     <string name="country_tanzania">Tanzania</string>

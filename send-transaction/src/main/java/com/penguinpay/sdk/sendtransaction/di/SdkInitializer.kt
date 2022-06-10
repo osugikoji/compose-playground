@@ -4,7 +4,7 @@ import android.content.Context
 import com.penguinpay.sdk.sendtransaction.data.repository.TransactionRepository
 import com.penguinpay.sdk.sendtransaction.di.provider.ApiProvider
 import com.penguinpay.sdk.sendtransaction.di.provider.NetworkProvider
-import com.penguinpay.sdk.sendtransaction.domain.business.TransactionBusiness
+import com.penguinpay.sdk.sendtransaction.domain.business.TransactionUseCases
 import com.penguinpay.sdk.sendtransaction.presentation.viewmodel.SendTransactionViewModel
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidContext
@@ -35,7 +35,7 @@ internal object SdkInitializer {
 
     private fun buildModule() = module {
         viewModel { SendTransactionViewModel(Dispatchers.Main, get()) }
-        factory { TransactionBusiness(get()) }
+        factory { TransactionUseCases(get()) }
         factory { TransactionRepository(get()) }
 
         single { NetworkProvider.moshi() }

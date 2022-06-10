@@ -1,10 +1,9 @@
 package com.penguinpay.sdk.sendtransaction.util
 
-private const val BINARY_REGEX = "^[01]+$"
+import com.penguinpay.sdk.sendtransaction.core.currencySymbolToBigDecimal
+import java.math.BigDecimal
 
-internal fun String.isValidBinaryValue(): Boolean {
-    return BINARY_REGEX.toRegex().matches(this)
-}
+
 
 internal fun String.isFullName(): Boolean {
     if (this.isEmpty()) return  false

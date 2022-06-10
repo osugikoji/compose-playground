@@ -1,14 +1,14 @@
 package com.penguinpay.sdk.sendtransaction.presentation.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.penguinpay.sdk.sendtransaction.domain.business.TransactionBusiness
+import com.penguinpay.sdk.sendtransaction.R
+import com.penguinpay.sdk.sendtransaction.domain.business.TransactionUseCases
 import com.penguinpay.sdk.sendtransaction.domain.model.Country
 import com.penguinpay.sdk.sendtransaction.presentation.viewmodel.SendTransactionViewModel.UIState
-import io.mockk.every
+import io.mockk.coEvery
 import io.mockk.mockk
+import java.math.BigDecimal
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -21,7 +21,7 @@ class SendTransactionViewModelTest {
 
     private lateinit var viewModel: SendTransactionViewModel
 
-    private val transactionBusiness = mockk<TransactionBusiness>()
+    private val transactionBusiness = mockk<TransactionUseCases>()
 
     @Before
     fun setup() {
@@ -31,25 +31,25 @@ class SendTransactionViewModelTest {
     @Test
     fun `on setTransferValue then should set given value`() {
         // act
-        viewModel.setTransferValue("1001")
+        viewModel.setTransferValue("US$ 100,00")
 
-        // assert
-        assertEquals("1001", viewModel.dataHolder.transferValue)
+        // assert0
+        assertEquals(BigDecimal(100).setScale(2), viewModel.dataHolder.transferValue)
     }
 
     @Test
-    fun `on setTransferValue when given an invalid binary value then should disable button`() {
+    fun `on setTransferValue when given an invalid value then should disable button`() {
         // act
-        viewModel.setTransferValue("10015")
+        viewModel.setTransferValue("US$ 0,00")
 
         // assert
         assertEquals(false, viewModel.enableButton.value)
     }
 
     @Test
-    fun `on setTransferValue when given a valid binary value then should enable button`() {
+    fun `on setTransferValue when given a valid value then should enable button`() {
         // act
-        viewModel.setTransferValue("1001")
+        viewModel.setTransferValue("US$ 100,00")
 
         // assert
         assertEquals(true, viewModel.enableButton.value)
@@ -155,12 +155,14 @@ class SendTransactionViewModelTest {
     @Test
     fun `on getTransactionExchangedValue when request failed then inform error state`() {
         // arrange
-        every { transactionBusiness.getTransactionExchangedValue("0110", Country.NIGERIA) } returns
-                flow { throw Exception("Request failed") }
+        val transferValue = "US$ 100,00"
+        coEvery {
+            transactionBusiness.getExchangedValue(BigDecimal(100).setScale(2), "BRL")
+        } throws Exception("Request failed")
 
         // act
-        viewModel.setTransferValue("0110")
-        viewModel.setSelectedCountry(Country.NIGERIA)
+        viewModel.setTransferValue(transferValue)
+        viewModel.setSelectedCountry(Country.BRAZIL)
         viewModel.getTransactionExchangedValue()
 
         // assert
@@ -169,29 +171,43 @@ class SendTransactionViewModelTest {
     }
 
     @Test
-    fun `on getTransactionExchangedValue when request succeed then inform transaction exchanged success state and set exchanged value`() {
+    fun `on getTransactionExchangedValue when request succeed then inform transaction exchanged success state and build summary model`() {
         // arrange
-        every { transactionBusiness.getTransactionExchangedValue("0110", Country.NIGERIA) } returns
-                flowOf("01100")
+        val transferValue = "US$ 100,00"
+        coEvery {
+            transactionBusiness.getExchangedValue(BigDecimal(100).setScale(2), "BRL")
+        } returns BigDecimal(500)
 
         // act
-        viewModel.setTransferValue("0110")
-        viewModel.setSelectedCountry(Country.NIGERIA)
+        viewModel.setTransferValue(transferValue)
+        viewModel.setRecipientName("Lionel Messi")
+        viewModel.setSelectedCountry(Country.BRAZIL)
+        viewModel.setRecipientPhone("11 1111-1111")
         viewModel.getTransactionExchangedValue()
 
         // assert
         val isExpectedState = viewModel.uiState.value is UIState.TransactionExchangedSuccess
         assertEquals(true, isExpectedState)
-        assertEquals("01100", viewModel.dataHolder.exchangedValue)
+        assertEquals("US$ 100,00", viewModel.summary.transferValue)
+        assertEquals("Lionel Messi", viewModel.summary.recipientName)
+        assertEquals(R.string.country_brazil, viewModel.summary.countryName)
+        assertEquals(R.drawable.ic_brazil_flag, viewModel.summary.countryIcon)
+        assertEquals("+55 11 1111-1111", viewModel.summary.fullPhoneNumber)
+        assertEquals("R$ 500,00", viewModel.summary.exchangedValue)
     }
 
     @Test
     fun `on sendTransaction when request failed then inform error state`() {
         // arrange
-        every { transactionBusiness.sendTransaction(any()) } returns
-                flow { throw Exception("Request failed") }
+        val transferValue = "US$ 100,00"
+        coEvery {
+            transactionBusiness.sendTransaction(BigDecimal(100).setScale(2), "+55 11 1111-1111", "BRL")
+        } throws Exception("Request failed")
 
         // act
+        viewModel.setTransferValue(transferValue)
+        viewModel.setSelectedCountry(Country.BRAZIL)
+        viewModel.setRecipientPhone("11 1111-1111")
         viewModel.sendTransaction()
 
         // assert
@@ -202,9 +218,15 @@ class SendTransactionViewModelTest {
     @Test
     fun `on sendTransaction when request succeed then inform send transaction success state`() {
         // arrange
-        every { transactionBusiness.sendTransaction(any()) } returns flowOf(Unit)
+        val transferValue = "US$ 100,00"
+        coEvery {
+            transactionBusiness.sendTransaction(BigDecimal(100).setScale(2), "+55 11 1111-1111", "BRL")
+        } returns Unit
 
         // act
+        viewModel.setTransferValue(transferValue)
+        viewModel.setSelectedCountry(Country.BRAZIL)
+        viewModel.setRecipientPhone("11 1111-1111")
         viewModel.sendTransaction()
 
         // assert
