@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("kover")
 }
 
 android {
@@ -32,6 +33,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
 }
 
 dependencies {
@@ -39,6 +44,16 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":data"))
 
+    testImplementation(Dependencies.UnitTest.CORE_KTX)
+    testImplementation(Dependencies.UnitTest.ROBOLECTRIC)
     testImplementation(Dependencies.UnitTest.JUNIT)
     testImplementation(Dependencies.UnitTest.MOCKK)
+    testImplementation(Dependencies.UnitTest.KOIN)
+}
+
+tasks.koverVerify {
+    rule {
+        name = "Minimal line coverage rate in percents"
+        bound { minValue = 90 }
+    }
 }

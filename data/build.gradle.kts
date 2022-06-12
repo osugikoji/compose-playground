@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("kover")
 }
 
 android {
@@ -36,9 +37,21 @@ android {
 
 dependencies {
     implementation(Dependencies.DI.KOIN)
-    api(Dependencies.DataSource.RETROFIT)
-    api(Dependencies.DataSource.RETROFIT_CONVERTER)
-    api(Dependencies.DataSource.MOSHI)
-    api(Dependencies.DataSource.MOSHI_KOTLIN)
-    api(Dependencies.DataSource.MOSHI_KOTLIN_CODEGEN)
+    implementation(Dependencies.DataSource.RETROFIT)
+    implementation(Dependencies.DataSource.RETROFIT_CONVERTER)
+    implementation(Dependencies.DataSource.RETRO_MOCK)
+    implementation(Dependencies.DataSource.MOSHI)
+    implementation(Dependencies.DataSource.MOSHI_KOTLIN)
+    implementation(Dependencies.DataSource.MOSHI_KOTLIN_CODEGEN)
+
+    testImplementation(Dependencies.UnitTest.KOIN)
+    testImplementation(Dependencies.UnitTest.JUNIT)
+    testImplementation(Dependencies.UnitTest.MOCK_WEB_SERVER)
+}
+
+tasks.koverVerify {
+    rule {
+        name = "Minimal line coverage rate in percents"
+        bound { minValue = 90 }
+    }
 }

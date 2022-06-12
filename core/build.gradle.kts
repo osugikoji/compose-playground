@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("kover")
 }
 
 android {
@@ -37,4 +38,11 @@ android {
 dependencies {
     testImplementation(Dependencies.UnitTest.JUNIT)
     testImplementation(Dependencies.UnitTest.ROBOLECTRIC)
+}
+
+tasks.koverVerify {
+    rule {
+        name = "Minimal line coverage rate in percents"
+        bound { minValue = 90 }
+    }
 }

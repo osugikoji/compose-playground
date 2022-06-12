@@ -131,4 +131,3 @@ internal class SendTransactionActivity :
         return false
     }
 }
-

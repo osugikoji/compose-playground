@@ -1,0 +1,9 @@
+{
+  "disclaimer": "Usage subject to terms: https://openexchangerates.org/terms",
+  "license": "https://openexchangerates.org/license",
+  "timestamp": 1655002744,
+  "base": "USD",
+  "rates": {
+    "BRL": 4.987385
+  }
+}

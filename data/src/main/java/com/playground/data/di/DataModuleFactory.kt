@@ -6,8 +6,10 @@ import org.koin.core.module.Module
 
 object DataModuleFactory {
 
-    fun buildModules(appId: String): List<Module> {
-        return NetworkModule().provide()
+    private const val BASE_URL = "https://openexchangerates.org/"
+
+    fun buildModules(appId: String, baseUrl: String = BASE_URL): List<Module> {
+        return NetworkModule(baseUrl).provide()
             .plus(DataSourceModule(appId).provide())
     }
 }

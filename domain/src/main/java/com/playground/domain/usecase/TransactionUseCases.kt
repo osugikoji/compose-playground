@@ -15,7 +15,7 @@ class TransactionUseCases(private val transactionRepository: TransactionReposito
     ): BigDecimal {
         val exchangeResult =
             transactionRepository.getExchange(CurrencyCode.UNITED_STATES, currencySymbol)
-        val exchangeDto = exchangeResult.body() ?: error("Could not retrieved exchange result.")
+        val exchangeDto = exchangeResult.getBodyOrThrow()
         val rate = exchangeDto.rates[currencySymbol]?.absoluteValue
             ?: error("Could not find rate value for the given currency symbol.")
 
@@ -35,8 +35,6 @@ class TransactionUseCases(private val transactionRepository: TransactionReposito
             phoneNumber = sanitizedPhone
         )
         val result = transactionRepository.sendTransaction(requestDto)
-        if (!result.isSuccessful) {
-            throw IllegalStateException("Send transaction request failed.")
-        }
+        result.ensureSuccess()
     }
 }

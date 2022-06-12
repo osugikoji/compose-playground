@@ -15,6 +15,7 @@ buildscript {
         classpath(Dependencies.Classpath.NAVIGATION)
         classpath(Dependencies.Classpath.DETEKT)
         classpath(Dependencies.Classpath.KTLINT)
+        classpath(Dependencies.Classpath.KOVER)
     }
 }
 
