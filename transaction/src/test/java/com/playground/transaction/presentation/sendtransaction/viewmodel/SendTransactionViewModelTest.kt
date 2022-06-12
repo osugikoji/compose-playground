@@ -1,14 +1,14 @@
 package com.playground.transaction.presentation.sendtransaction.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.playground.domain.R
 import com.playground.domain.model.Country
 import com.playground.domain.usecase.TransactionUseCases
-import com.playground.domain.R
+import com.playground.transaction.infrastructure.MainDispatcherRule
 import com.playground.transaction.presentation.sendtransaction.viewmodel.SendTransactionViewModel.UIState
 import io.mockk.coEvery
 import io.mockk.mockk
 import java.math.BigDecimal
-import kotlinx.coroutines.Dispatchers
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -19,13 +19,16 @@ class SendTransactionViewModelTest {
     @get:Rule
     val instantRuleExecutor = InstantTaskExecutorRule()
 
+    @get:Rule
+    val mainDispatcherRule = MainDispatcherRule()
+
     private lateinit var viewModel: SendTransactionViewModel
 
     private val transactionUseCases = mockk<TransactionUseCases>()
 
     @Before
     fun setup() {
-        viewModel = SendTransactionViewModel(Dispatchers.Unconfined, transactionUseCases)
+        viewModel = SendTransactionViewModel(transactionUseCases)
     }
 
     @Test

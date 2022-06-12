@@ -49,6 +49,4 @@ dependencies {
     implementation(Dependencies.AndroidX.APP_COMPAT)
     implementation(Dependencies.UI.MATERIAL_DESIGN)
     implementation(project(":transaction"))
-
-    testImplementation(Dependencies.UnitTest.JUNIT)
 }

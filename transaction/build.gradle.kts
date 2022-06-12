@@ -54,4 +54,5 @@ dependencies {
     testImplementation(Dependencies.UnitTest.ROBOLECTRIC)
     testImplementation(Dependencies.UnitTest.CORE_TESTING)
     testImplementation(Dependencies.UnitTest.MOCKK)
+    testImplementation(Dependencies.UnitTest.COROUTINES_TEST)
 }

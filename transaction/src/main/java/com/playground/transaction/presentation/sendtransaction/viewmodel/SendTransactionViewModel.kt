@@ -7,14 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.playground.core.extensions.isFullName
 import com.playground.core.extensions.toCurrencyFormat
 import com.playground.domain.model.Country
+import com.playground.domain.usecase.TransactionUseCases
 import com.playground.transaction.presentation.sendtransaction.model.SendTransactionDataHolder
 import com.playground.transaction.presentation.sendtransaction.model.SendTransactionSummary
-import com.playground.domain.usecase.TransactionUseCases
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
 internal class SendTransactionViewModel(
-    private val dispatcher: CoroutineDispatcher,
     private val transactionUseCase: TransactionUseCases,
 ) : ViewModel() {
 
@@ -51,7 +49,7 @@ internal class SendTransactionViewModel(
         _enableButton.value = dataHolder.isValidPhoneNumber()
     }
 
-    fun getTransactionExchangedValue() = viewModelScope.launch(dispatcher) {
+    fun getTransactionExchangedValue() = viewModelScope.launch {
         val transferValue = dataHolder.transferValue
         val selectedCountry = dataHolder.selectedCountry
         _uiState.value = UIState.Loading
@@ -70,7 +68,7 @@ internal class SendTransactionViewModel(
         }.onFailure { _uiState.value = UIState.Error(it.message.orEmpty()) }
     }
 
-    fun sendTransaction() = viewModelScope.launch(dispatcher) {
+    fun sendTransaction() = viewModelScope.launch {
         val transferValue = dataHolder.transferValue
         val fullPhoneNumber = dataHolder.getFullPhoneNumber()
         val currencySymbol = dataHolder.selectedCountry.currencySymbol
