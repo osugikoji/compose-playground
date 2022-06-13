@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        tools:text="The transfer in the amount of 00001 was successful" />
+        tools:text="The transfer in the amount of US$ 100,00 was successful." />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_action"

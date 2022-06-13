@@ -43,6 +43,7 @@ dependencies {
     implementation(Dependencies.DataSource.MOSHI)
     implementation(Dependencies.DataSource.MOSHI_KOTLIN)
     implementation(Dependencies.DataSource.MOSHI_KOTLIN_CODEGEN)
+    implementation(project(":core"))
 
     testImplementation(Dependencies.UnitTest.KOIN)
     testImplementation(Dependencies.UnitTest.JUNIT)

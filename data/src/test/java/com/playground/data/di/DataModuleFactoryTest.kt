@@ -22,7 +22,7 @@ class DataModuleFactoryTest : KoinTest {
 
     @Before
     fun setUp() {
-        startKoin { modules(DataModuleFactory.buildModules("123")) }
+        startKoin { modules(DataModuleFactory.buildModules("123", "http://base.com")) }
     }
 
     @After

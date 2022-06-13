@@ -4,10 +4,9 @@ package com.playground.data.executor
 data class SourceResult<T>(
     val isSuccessful: Boolean,
     val body: T? = null,
-    val errorBody: ErrorBody? = null,
     val code: Int? = null,
     val headers: Map<String, List<String>> = mapOf(),
-    val throwable: Throwable? = null
+    val throwable: Throwable? = null,
 ) {
 
     /** Try to get [body], if it is null an [IllegalStateException] will be thrown. */
@@ -35,6 +34,4 @@ data class SourceResult<T>(
         if (!isSuccessful) onResult(throwable)
         return this
     }
-
-    data class ErrorBody(val errorType: String, val description: String)
 }

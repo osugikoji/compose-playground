@@ -38,6 +38,11 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    testOptions {
+        animationsDisabled = true
+        unitTests.isIncludeAndroidResources = true
+    }
 }
 
 dependencies {
@@ -50,9 +55,20 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":domain"))
 
+    testImplementation(Dependencies.UnitTest.ANDROID_EXT_JUNIT)
+    testImplementation(Dependencies.UnitTest.ESPRESSO_CORE)
+    testImplementation(Dependencies.UnitTest.ESPRESSO_INTENTS)
     testImplementation(Dependencies.UnitTest.JUNIT)
     testImplementation(Dependencies.UnitTest.ROBOLECTRIC)
     testImplementation(Dependencies.UnitTest.CORE_TESTING)
     testImplementation(Dependencies.UnitTest.MOCKK)
     testImplementation(Dependencies.UnitTest.COROUTINES_TEST)
+    testImplementation(Dependencies.UnitTest.MOCK_WEB_SERVER)
+}
+
+tasks.koverVerify {
+    rule {
+        name = "Minimal line coverage rate in percents"
+        bound { minValue = 80 }
+    }
 }

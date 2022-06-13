@@ -6,8 +6,8 @@ import org.koin.core.module.Module
 
 object DomainModuleFactory {
 
-    fun buildModules(appId: String): List<Module> {
+    fun buildModules(appId: String, baseUrl: String): List<Module> {
         return UseCaseModule().provide()
-            .plus(DataModuleFactory.buildModules(appId))
+            .plus(DataModuleFactory.buildModules(appId, baseUrl))
     }
 }

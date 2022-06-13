@@ -121,18 +121,4 @@ class SourceResultTest {
         // assert
         assertEquals(null, result)
     }
-
-    @Test
-    fun `check error body creation`() {
-        // arrange
-        val errorBody = SourceResult.ErrorBody("ERROR", "Error mock.")
-        val sourceResult = SourceResult<Unit>(
-            isSuccessful = false,
-            errorBody = errorBody,
-            throwable = Exception()
-        )
-
-        // assert
-        assertEquals(errorBody, sourceResult.errorBody)
-    }
 }

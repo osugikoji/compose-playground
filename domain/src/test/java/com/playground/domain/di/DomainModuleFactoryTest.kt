@@ -14,7 +14,7 @@ class DomainModuleFactoryTest : KoinTest {
 
     @Before
     fun setUp() {
-        startKoin { modules(DomainModuleFactory.buildModules("123")) }
+        startKoin { modules(DomainModuleFactory.buildModules("123", "http://baseApi.com")) }
     }
 
     @After

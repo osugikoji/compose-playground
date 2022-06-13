@@ -11,11 +11,11 @@ internal object TransactionInitializer {
 
     private var koinApp: KoinApplication? = null
 
-    fun start(context: Context, appId: String) {
+    fun start(context: Context, appId: String, baseUrl: String) {
         koinApp = koinApplication {
             androidContext(context.applicationContext)
             modules(
-                DomainModuleFactory.buildModules(appId)
+                DomainModuleFactory.buildModules(appId, baseUrl)
                     .plus(ViewModelModule().provide())
             )
         }

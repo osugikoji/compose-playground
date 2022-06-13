@@ -4,6 +4,7 @@ object Dependencies {
     private const val RETROFIT_VERSION = "2.9.0"
     private const val MOSHI_VERSION = "1.13.0"
     private const val KOIN_VERSION = "3.2.0"
+    private const val ESPRESSO_VERSION = "3.4.0"
     const val DETEKT_VERSION = "1.20.0"
 
     object AndroidX {
@@ -11,6 +12,7 @@ object Dependencies {
         const val APP_COMPAT = "androidx.appcompat:appcompat:1.4.2"
         const val NAV_FRAGMENT_KTX = "androidx.navigation:navigation-fragment-ktx:$NAV_VERSION"
         const val NAV_UI_KTX = "androidx.navigation:navigation-ui-ktx:$NAV_VERSION"
+        const val ESPRESSO_IDLING = "androidx.test.espresso:espresso-idling-resource:$ESPRESSO_VERSION"
     }
 
     object UI {
@@ -36,6 +38,9 @@ object Dependencies {
         const val ROBOLECTRIC = "org.robolectric:robolectric:4.8.1"
         const val CORE_KTX = "androidx.test:core-ktx:1.4.0"
         const val CORE_TESTING = "androidx.arch.core:core-testing:2.1.0"
+        const val ANDROID_EXT_JUNIT = "androidx.test.ext:junit-ktx:1.1.3"
+        const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:$ESPRESSO_VERSION"
+        const val ESPRESSO_INTENTS = "androidx.test.espresso:espresso-intents:$ESPRESSO_VERSION"
         const val MOCKK = "io.mockk:mockk:1.12.3"
         const val MOCK_WEB_SERVER = "com.squareup.okhttp3:mockwebserver:4.9.3"
         const val COROUTINES_TEST = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.2"
@@ -43,7 +48,7 @@ object Dependencies {
 
     object Classpath {
         const val GRADLE = "com.android.tools.build:gradle:7.2.1"
-        const val KOTLIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
+        const val KOTLIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.0"
         const val NAVIGATION = "androidx.navigation:navigation-safe-args-gradle-plugin:$NAV_VERSION"
         const val DETEKT = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$DETEKT_VERSION"
         const val KTLINT = "org.jlleitschuh.gradle:ktlint-gradle:10.3.0"

@@ -36,11 +36,14 @@ android {
 }
 
 dependencies {
+    implementation(Dependencies.AndroidX.ESPRESSO_IDLING)
+
     testImplementation(Dependencies.UnitTest.JUNIT)
     testImplementation(Dependencies.UnitTest.ROBOLECTRIC)
 }
 
 tasks.koverVerify {
+    excludes = listOf("com.playground.core.idling.*")
     rule {
         name = "Minimal line coverage rate in percents"
         bound { minValue = 90 }

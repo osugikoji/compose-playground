@@ -15,7 +15,7 @@ internal class TransactionSuccessActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTransactionSuccessBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val payload = intent.getStringExtra(PAYLOAD).orEmpty()
+        val payload = intent.getStringExtra(PAYLOAD) ?: error("Currency value is required.")
         val message = getString(R.string.transaction_success_message, payload)
         binding.textViewMessage.text = message
         binding.buttonAction.setOnClickListener { finish() }
@@ -25,9 +25,9 @@ internal class TransactionSuccessActivity : AppCompatActivity() {
 
         private const val PAYLOAD = "PAYLOAD"
 
-        fun getIntent(context: Context, value: String): Intent {
+        fun getIntent(context: Context, currencyValue: String): Intent {
             return Intent(context, TransactionSuccessActivity::class.java).apply {
-                putExtra(PAYLOAD, value)
+                putExtra(PAYLOAD, currencyValue)
             }
         }
     }

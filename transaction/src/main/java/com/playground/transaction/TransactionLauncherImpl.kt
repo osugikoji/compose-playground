@@ -9,8 +9,12 @@ internal class TransactionLauncherImpl(private val appId: String) : TransactionL
 
     override fun launchSendTransaction(activity: ComponentActivity) {
         TransactionInitializer.stop()
-        TransactionInitializer.start(activity.applicationContext, appId)
+        TransactionInitializer.start(activity.applicationContext, appId, BASE_URL)
         val intent = Intent(activity, SendTransactionActivity::class.java)
         activity.startActivity(intent)
+    }
+
+    companion object {
+        private const val BASE_URL = "https://openexchangerates.org/"
     }
 }

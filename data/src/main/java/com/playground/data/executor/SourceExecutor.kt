@@ -1,5 +1,7 @@
 package com.playground.data.executor
 
+import com.playground.core.idling.EspressoIdlingResource
+import com.playground.data.exception.BackendException
 import com.squareup.moshi.Json
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.CoroutineDispatcher
@@ -16,12 +18,15 @@ internal class SourceExecutor(
 
     suspend fun <T> execute(request: suspend () -> Response<T>) = withContext(dispatcher) {
         try {
+            EspressoIdlingResource.increment()
             val result = request()
             result.toSourceResult()
         } catch (httpException: HttpException) {
             httpException.toSourceResult()
         } catch (ioException: IOException) {
             ioException.toSourceResult()
+        } finally {
+            EspressoIdlingResource.decrement()
         }
     }
 
@@ -34,39 +39,33 @@ internal class SourceExecutor(
 
     private fun <T> HttpException.toSourceResult(): SourceResult<T> {
         val headers = this.response()?.headers()?.toMultimap().orEmpty()
-        val errorBody = this.response()?.tryGetErrorBody()
+        val throwable = this.response()?.buildBackendException()
         return SourceResult(
             isSuccessful = false,
-            errorBody = errorBody,
-            code = this.code(),
-            headers = headers,
-            throwable = this
-        )
-    }
-
-    private fun <T> Response<T>.toSourceResult(): SourceResult<T> {
-        val headers = this.headers().toMultimap()
-        val throwable = if (!this.isSuccessful) HttpException(this) else null
-        val errorBody = this.tryGetErrorBody()
-        return SourceResult(
-            isSuccessful = this.isSuccessful,
-            body = this.body(),
-            errorBody = errorBody,
             code = this.code(),
             headers = headers,
             throwable = throwable
         )
     }
 
-    private fun <T> Response<T>.tryGetErrorBody(): SourceResult.ErrorBody? {
+    private fun <T> Response<T>.toSourceResult(): SourceResult<T> {
+        val headers = this.headers().toMultimap()
+        val throwable = if (!this.isSuccessful) this.buildBackendException() else null
+        return SourceResult(
+            isSuccessful = this.isSuccessful,
+            body = this.body(),
+            code = this.code(),
+            headers = headers,
+            throwable = throwable
+        )
+    }
+
+    private fun <T> Response<T>.buildBackendException(): BackendException {
         val errorJson = this.errorBody()?.string()
         val errorBodyDto = runCatching {
             moshi.adapter(ErrorBodyDto::class.java).fromJson(errorJson!!)
-        }.getOrNull() ?: return null
-        return SourceResult.ErrorBody(
-            errorType = errorBodyDto.errorType,
-            description = errorBodyDto.description
-        )
+        }.getOrNull()
+        return BackendException(errorBodyDto?.errorType, errorBodyDto?.description)
     }
 
     private data class ErrorBodyDto(
