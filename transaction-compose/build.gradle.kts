@@ -1,7 +1,5 @@
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
-
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("kotlin-android")
 }
 
@@ -9,15 +7,11 @@ android {
     compileSdk = Config.COMPILE_SDK_VERSION
 
     defaultConfig {
-        applicationId = "com.playground.sample"
         minSdk = Config.MIN_SDK_VERSION
         targetSdk = Config.TARGET_SDK_VERSION
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        val appId = gradleLocalProperties(rootDir).getProperty("APP_ID")
-        buildConfigField("String", "APP_ID", "\"$appId\"")
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -40,14 +34,23 @@ android {
     }
 
     buildFeatures {
-        viewBinding = true
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Dependencies.COMPOSE_VERSION
     }
 }
 
 dependencies {
-    implementation(Dependencies.AndroidX.CORE_KTX)
     implementation(Dependencies.AndroidX.APP_COMPAT)
-    implementation(Dependencies.UI.MATERIAL_DESIGN)
-    implementation(project(":transaction"))
-    implementation(project(":transaction-compose"))
+    implementation(Dependencies.AndroidX.NAV_COMPOSABLE)
+    implementation(Dependencies.DI.KOIN_COMPOSE)
+    implementation(Dependencies.UI.COMPOSE_ACTIVITY)
+    implementation(Dependencies.UI.COMPOSE_UI)
+    implementation(Dependencies.UI.COMPOSE_UI_TOOLING)
+    implementation(Dependencies.UI.COMPOSE_FOUNDATION)
+    implementation(Dependencies.UI.COMPOSE_MATERIAL)
+    implementation(project(":domain"))
+    implementation(project(":core"))
 }

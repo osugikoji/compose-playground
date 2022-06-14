@@ -4,20 +4,29 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.playground.sample.databinding.ActivityMainBinding
 import com.playground.transaction.TransactionLauncher
+import com.playground.transaction.compose.TransactionComposeLauncher
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    private val appId by lazy { BuildConfig.APP_ID }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.buttonSendTransaction.setOnClickListener { startSendTransactionScreen() }
+        binding.buttonSendTransaction.setOnClickListener { startSendTransaction() }
+        binding.buttonSendTransactionCompose.setOnClickListener { startSendTransactionCompose() }
     }
 
-    private fun startSendTransactionScreen() {
-        val transactionLauncher = TransactionLauncher.create("e783f4d11f2b4ca0a78a1062f6e94f2e")
+    private fun startSendTransaction() {
+        val transactionLauncher = TransactionLauncher.create(appId)
         transactionLauncher.launchSendTransaction(this)
+    }
+
+    private fun startSendTransactionCompose() {
+        val transactionComposeLauncher = TransactionComposeLauncher.create(appId)
+        transactionComposeLauncher.launchSendTransaction(this)
     }
 }

@@ -5,6 +5,7 @@ object Dependencies {
     private const val MOSHI_VERSION = "1.13.0"
     private const val KOIN_VERSION = "3.2.0"
     private const val ESPRESSO_VERSION = "3.4.0"
+    const val COMPOSE_VERSION = "1.1.1"
     const val DETEKT_VERSION = "1.20.0"
 
     object AndroidX {
@@ -12,15 +13,22 @@ object Dependencies {
         const val APP_COMPAT = "androidx.appcompat:appcompat:1.4.2"
         const val NAV_FRAGMENT_KTX = "androidx.navigation:navigation-fragment-ktx:$NAV_VERSION"
         const val NAV_UI_KTX = "androidx.navigation:navigation-ui-ktx:$NAV_VERSION"
+        const val NAV_COMPOSABLE = "androidx.navigation:navigation-compose:$NAV_VERSION"
         const val ESPRESSO_IDLING = "androidx.test.espresso:espresso-idling-resource:$ESPRESSO_VERSION"
     }
 
     object UI {
         const val MATERIAL_DESIGN = "com.google.android.material:material:1.6.1"
+        const val COMPOSE_ACTIVITY = "androidx.activity:activity-compose:$COMPOSE_VERSION"
+        const val COMPOSE_UI = "androidx.compose.ui:ui:$COMPOSE_VERSION"
+        const val COMPOSE_UI_TOOLING = "androidx.compose.ui:ui-tooling:$COMPOSE_VERSION"
+        const val COMPOSE_FOUNDATION = "androidx.compose.foundation:foundation:$COMPOSE_VERSION"
+        const val COMPOSE_MATERIAL = "androidx.compose.material:material:$COMPOSE_VERSION"
     }
 
     object DI {
         const val KOIN = "io.insert-koin:koin-android:$KOIN_VERSION"
+        const val KOIN_COMPOSE = "io.insert-koin:koin-androidx-compose:$KOIN_VERSION"
     }
 
     object DataSource {
@@ -48,7 +56,7 @@ object Dependencies {
 
     object Classpath {
         const val GRADLE = "com.android.tools.build:gradle:7.2.1"
-        const val KOTLIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.0"
+        const val KOTLIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
         const val NAVIGATION = "androidx.navigation:navigation-safe-args-gradle-plugin:$NAV_VERSION"
         const val DETEKT = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$DETEKT_VERSION"
         const val KTLINT = "org.jlleitschuh.gradle:ktlint-gradle:10.3.0"

@@ -8,6 +8,12 @@ import java.util.Locale
 private const val CURRENCY_SCALE = 2
 private const val DIVIDE_VALUE = 100
 
+fun String.toCurrencyFormat(currencyCode: String): String {
+    val currency = Currency.getInstance(currencyCode)
+    val value = this.currencyFormatToBigDecimal(currencyCode)
+    return value.toCurrencyFormat(currency)
+}
+
 fun BigDecimal.toCurrencyFormat(currencyCode: String): String {
     val currency = Currency.getInstance(currencyCode)
     return this.toCurrencyFormat(currency)

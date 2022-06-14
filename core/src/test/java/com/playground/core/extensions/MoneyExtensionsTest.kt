@@ -7,6 +7,30 @@ import org.junit.Test
 class MoneyExtensionsTest {
 
     @Test
+    fun `on toCurrencyFormat when value is empty then should return zero currency value`() {
+        // arrange
+        val valueToFormat = ""
+
+        // act
+        val result = valueToFormat.toCurrencyFormat("BRL")
+
+        // assert
+        assertEquals("R$ 0,00", result)
+    }
+
+    @Test
+    fun `on toCurrencyFormat when is string value then should return formatted currency value`() {
+        // arrange
+        val valueToFormat = "100"
+
+        // act
+        val result = valueToFormat.toCurrencyFormat("BRL")
+
+        // assert
+        assertEquals("R$ 1,00", result)
+    }
+
+    @Test
     fun `on toCurrencyFormat when value is zero with two scale then should format correctly`() {
         // arrange
         val valueToFormat = BigDecimal(0).setScale(2)
