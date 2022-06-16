@@ -11,11 +11,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.playground.transaction.compose.ui.theme.PlaygroundColor
+import com.playground.transaction.compose.ui.theme.GrayExtraLight
+import com.playground.transaction.compose.ui.theme.Spacing
 
 @Composable
 internal fun StandardTextField(
@@ -44,12 +45,10 @@ internal fun StandardTextField(
         readOnly = readOnly,
         keyboardOptions = keyboardOptions,
         maxLines = maxLines,
-        shape = RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp),
+        shape = RoundedCornerShape(topStart = Spacing.XS, topEnd = Spacing.XS),
         placeholder = { Text(text = placeholder) },
         label = { Text(text = hint) },
-        colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = PlaygroundColor.GrayExtraLight
-        )
+        colors = TextFieldDefaults.textFieldColors(backgroundColor = Color.GrayExtraLight)
     )
 }
 

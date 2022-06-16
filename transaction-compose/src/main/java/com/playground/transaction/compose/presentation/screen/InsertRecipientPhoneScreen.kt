@@ -18,16 +18,19 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.playground.core.extensions.formatToDigits
 import com.playground.core.extensions.formatToPhone
 import com.playground.domain.model.Country
+import com.playground.transaction.compose.R
 import com.playground.transaction.compose.ui.components.button.StandardButton
 import com.playground.transaction.compose.ui.components.textfield.StandardTextField
-import com.playground.transaction.compose.ui.theme.PlaygroundColor
-import com.playground.transaction.compose.ui.theme.PlaygroundTypography
+import com.playground.transaction.compose.ui.theme.GrayMedium
+import com.playground.transaction.compose.ui.theme.Spacing
+import com.playground.transaction.compose.ui.theme.Typography
 import com.playground.transaction.compose.utils.safeRequestFocus
 
 @Composable
@@ -37,8 +40,6 @@ internal fun InsertRecipientPhoneScreen(
     modifier: Modifier = Modifier,
     onNextAction: () -> Unit = {},
 ) {
-    val focusRequester = remember { FocusRequester() }
-    focusRequester.safeRequestFocus()
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -59,15 +60,15 @@ internal fun InsertRecipientPhoneScreen(
 @Composable
 private fun TitleSection() {
     Text(
-        modifier = Modifier.padding(bottom = 8.dp),
-        text = "What is the recipient phone?",
-        style = PlaygroundTypography.Title
+        modifier = Modifier.padding(bottom = Spacing.XS),
+        text = stringResource(id = R.string.insert_phone_title),
+        style = Typography.Title
     )
     Text(
-        modifier = Modifier.padding(bottom = 24.dp),
-        text = "Enter the recipient phone number",
-        style = PlaygroundTypography.Subtitle,
-        color = PlaygroundColor.GrayMedium
+        modifier = Modifier.padding(bottom = Spacing.XM),
+        text = stringResource(id = R.string.insert_phone_subtitle),
+        style = Typography.Subtitle,
+        color = Color.GrayMedium
     )
 }
 
@@ -81,18 +82,18 @@ private fun TextFieldSection(
     Row {
         StandardTextField(
             modifier = Modifier.weight(1f),
-            hint = "Prefix",
+            hint = stringResource(id = R.string.insert_phone_prefix_hint),
             value = phoneCountry.phonePrefix,
             readOnly = true
         )
         StandardTextField(
             value = phoneState.value,
             selectAt = phoneState.value.length,
-            hint = "Phone number",
+            hint = stringResource(id = R.string.insert_phone_hint),
             modifier = Modifier
                 .focusRequester(focusRequester)
                 .weight(2f)
-                .padding(start = 24.dp),
+                .padding(start = Spacing.XM),
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
             onTextChanged = { phoneState.value = it.formatToPhone(phoneCountry.countryIso) }
         )
@@ -107,10 +108,10 @@ private fun ButtonSection(
 ) {
     val enableButton = phoneState.value.formatToDigits().length >= phoneCountry.phoneNumberLength
     StandardButton(
-        text = "Next",
+        text = stringResource(id = R.string.next_action),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 32.dp),
+            .padding(top = Spacing.BG),
         enabled = enableButton,
         onClick = { onNextAction() }
     )
@@ -120,8 +121,5 @@ private fun ButtonSection(
 @Composable
 private fun InsertRecipientPhoneScreenPreview() {
     val value = rememberSaveable { mutableStateOf("") }
-    InsertRecipientPhoneScreen(
-        phoneState = value,
-        phoneCountry = Country.BRAZIL
-    )
+    InsertRecipientPhoneScreen(phoneState = value, phoneCountry = Country.BRAZIL)
 }

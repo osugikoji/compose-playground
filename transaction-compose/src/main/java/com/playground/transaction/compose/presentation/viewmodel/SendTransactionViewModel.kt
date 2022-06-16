@@ -11,7 +11,6 @@ import com.playground.domain.model.Country
 import com.playground.domain.model.CurrencyCode
 import com.playground.domain.usecase.TransactionUseCases
 import com.playground.transaction.compose.presentation.navigation.SendTransactionRoute
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -73,8 +72,8 @@ internal class SendTransactionViewModel(
 
     fun sendTransaction() = viewModelScope.launch {
         _uiState.value = UIState.Loading
-        val transferValue = transferValue.value
-            .currencyFormatToBigDecimal(CurrencyCode.UNITED_STATES)
+        val transferValue =
+            transferValue.value.currencyFormatToBigDecimal(CurrencyCode.UNITED_STATES)
         val fullPhoneNumber = getFullPhoneNumber()
         val currencySymbol = selectedCountry.currencySymbol
         runCatching {
@@ -86,10 +85,9 @@ internal class SendTransactionViewModel(
         }
     }
 
-    private suspend fun redirectToSuccessScreen() {
+    private fun redirectToSuccessScreen() {
         _hideTopBar.value = true
         _uiState.value = UIState.Idle
-        delay(WAIT_APP_HIDE)
         _navigation.value = SendTransactionRoute.SUCCESS
     }
 
@@ -97,9 +95,5 @@ internal class SendTransactionViewModel(
         object Loading : UIState()
         data class Error(val message: String) : UIState()
         object Idle : UIState()
-    }
-
-    companion object {
-        private const val WAIT_APP_HIDE = 500L
     }
 }

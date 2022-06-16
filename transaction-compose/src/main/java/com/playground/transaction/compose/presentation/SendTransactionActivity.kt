@@ -25,7 +25,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -38,6 +37,7 @@ import com.playground.transaction.compose.ui.components.loading.LoadingScreen
 import com.playground.transaction.compose.ui.components.message.ErrorMessageBar
 import com.playground.transaction.compose.ui.components.navigation.StandardAppBar
 import com.playground.transaction.compose.ui.theme.PlaygroundTheme
+import com.playground.transaction.compose.ui.theme.Spacing
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -139,8 +139,8 @@ private fun NavigationSection(
         viewModel = viewModel,
         navHostController = navHostController,
         modifier = Modifier
-            .padding(horizontal = 16.dp)
-            .padding(top = 32.dp, bottom = 24.dp),
+            .padding(horizontal = Spacing.MD)
+            .padding(top = Spacing.BG, bottom = Spacing.XM),
         onFinish = onFinish,
     )
 }

@@ -16,16 +16,19 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.playground.core.extensions.hasMoney
 import com.playground.core.extensions.toCurrencyFormat
 import com.playground.domain.model.CurrencyCode
+import com.playground.transaction.compose.R
 import com.playground.transaction.compose.ui.components.button.StandardButton
 import com.playground.transaction.compose.ui.components.textfield.StandardTextField
-import com.playground.transaction.compose.ui.theme.PlaygroundColor
-import com.playground.transaction.compose.ui.theme.PlaygroundTypography
+import com.playground.transaction.compose.ui.theme.GrayMedium
+import com.playground.transaction.compose.ui.theme.Spacing
+import com.playground.transaction.compose.ui.theme.Typography
 import com.playground.transaction.compose.utils.safeRequestFocus
 
 @Composable
@@ -35,9 +38,7 @@ internal fun InsertTransferValueScreen(
     modifier: Modifier = Modifier,
     onNextAction: () -> Unit = {},
 ) {
-    val focusRequester = remember { FocusRequester() }
     val buttonEnabled = transferValueState.value.hasMoney()
-    focusRequester.safeRequestFocus()
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -48,12 +49,12 @@ internal fun InsertTransferValueScreen(
         TextFieldSection(transferValueState, currencyCode)
         Spacer(modifier = Modifier.weight(1f))
         StandardButton(
-            text = "Next",
+            text = stringResource(id = R.string.next_action),
             enabled = buttonEnabled,
             onClick = { onNextAction() },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 32.dp),
+                .padding(top = Spacing.BG),
         )
     }
 }
@@ -61,15 +62,15 @@ internal fun InsertTransferValueScreen(
 @Composable
 internal fun TitleSectionScreen() {
     Text(
-        modifier = Modifier.padding(bottom = 8.dp),
-        text = "What is the transfer value",
-        style = PlaygroundTypography.Title
+        modifier = Modifier.padding(bottom = Spacing.XS),
+        text = stringResource(id = R.string.insert_transaction_title),
+        style = Typography.Title
     )
     Text(
-        modifier = Modifier.padding(bottom = 24.dp),
-        text = "Enter a real value that you want to send.",
-        style = PlaygroundTypography.Subtitle,
-        color = PlaygroundColor.GrayMedium
+        modifier = Modifier.padding(bottom = Spacing.XM),
+        text = stringResource(id = R.string.insert_transaction_subtitle),
+        style = Typography.Subtitle,
+        color = Color.GrayMedium
     )
 }
 
@@ -84,8 +85,7 @@ internal fun TextFieldSection(
     StandardTextField(
         value = transferMoney,
         selectAt = transferMoney.length,
-        placeholder = "R$ 0.00",
-        hint = "Value",
+        hint = stringResource(id = R.string.insert_transaction_hint),
         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
         onTextChanged = { transferValueState.value = it.toCurrencyFormat(currencyCode) },
         modifier = Modifier

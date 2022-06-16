@@ -15,9 +15,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.playground.transaction.compose.ui.components.button.StandardButton
-import com.playground.transaction.compose.ui.theme.PlaygroundColor
+import com.playground.transaction.compose.ui.theme.Spacing
+import com.playground.transaction.compose.ui.theme.StatusErrorMain
 import kotlinx.coroutines.launch
 
 @Composable
@@ -27,7 +27,7 @@ internal fun MessageBar(
     backgroundColor: Color = SnackbarDefaults.backgroundColor,
 ) {
     SnackbarHost(snackBarHostState, modifier = modifier) {
-        Snackbar(backgroundColor = backgroundColor, modifier = Modifier.padding(16.dp)) {
+        Snackbar(backgroundColor = backgroundColor, modifier = Modifier.padding(Spacing.MD)) {
             Text(it.message)
         }
     }
@@ -41,7 +41,7 @@ internal fun ErrorMessageBar(
     MessageBar(
         snackBarHostState = snackBarHostState,
         modifier = modifier,
-        backgroundColor = PlaygroundColor.StatusErrorMain
+        backgroundColor = Color.StatusErrorMain
     )
 }
 

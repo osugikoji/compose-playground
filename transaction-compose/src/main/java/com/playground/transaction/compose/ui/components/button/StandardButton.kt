@@ -9,9 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.playground.transaction.compose.ui.theme.PlaygroundColor
+import com.playground.transaction.compose.ui.theme.AccentMain
+import com.playground.transaction.compose.ui.theme.GrayExtraLight
+import com.playground.transaction.compose.ui.theme.GrayLight
 import com.playground.transaction.compose.ui.theme.PlaygroundTheme
+import com.playground.transaction.compose.ui.theme.Spacing
 
 @Composable
 internal fun StandardButton(
@@ -23,13 +25,13 @@ internal fun StandardButton(
     Button(
         modifier = modifier,
         enabled = enabled,
-        shape = RoundedCornerShape(8.dp),
-        contentPadding = PaddingValues(16.dp),
+        shape = RoundedCornerShape(Spacing.XS),
+        contentPadding = PaddingValues(Spacing.MD),
         colors = ButtonDefaults.buttonColors(
-            backgroundColor = PlaygroundColor.AccentMain,
+            backgroundColor = Color.AccentMain,
             contentColor = Color.White,
-            disabledBackgroundColor = PlaygroundColor.GrayExtraLight,
-            disabledContentColor = PlaygroundColor.GrayLight
+            disabledBackgroundColor = Color.GrayExtraLight,
+            disabledContentColor = Color.GrayLight
         ),
         onClick = onClick) {
         Text(text = text)

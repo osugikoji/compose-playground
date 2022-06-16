@@ -27,15 +27,27 @@
         <entry key="..\:/Workspace/penguinpay-prototype/send-transaction/src/main/res/layout/fragment_transaction_confirmation.xml" value="0.25625" />
         <entry key="..\:/Workspace/penguinpay-prototype/send-transaction/src/main/res/layout/view_dialog_loading.xml" value="0.25625" />
         <entry key="..\:/Workspace/penguinpay-prototype/send-transaction/src/main/res/menu/menu_send_transaction.xml" value="0.25625" />
+        <entry key="..\:/Workspace/playground/app/src/main/res/layout/activity_main.xml" value="0.16259057971014493" />
         <entry key="..\:/Workspace/playground/domain/src/main/res/drawable/ic_brazil_flag.xml" value="0.1965" />
         <entry key="..\:/Workspace/playground/domain/src/main/res/drawable/ic_check.xml" value="0.1965" />
         <entry key="..\:/Workspace/playground/domain/src/main/res/drawable/ic_kenya_flag.xml" value="0.1965" />
         <entry key="..\:/Workspace/playground/domain/src/main/res/drawable/ic_nigeria_flag.xml" value="0.1965" />
         <entry key="..\:/Workspace/playground/domain/src/main/res/drawable/ic_tanzania_flag.xml" value="0.1965" />
         <entry key="..\:/Workspace/playground/domain/src/main/res/drawable/ic_uganda_flag.xml" value="0.1965" />
+        <entry key="..\:/Workspace/playground/transaction-compose/src/main/res/drawable/ic_brazil_flag2.xml" value="0.147" />
         <entry key="..\:/Workspace/playground/transaction/src/main/res/drawable/ic_arrow_left.xml" value="0.1965" />
+        <entry key="..\:/Workspace/playground/transaction/src/main/res/layout/activity_send_transaction.xml" value="0.18854166666666666" />
+        <entry key="..\:/Workspace/playground/transaction/src/main/res/layout/activity_transaction_success.xml" value="0.2" />
+        <entry key="..\:/Workspace/playground/transaction/src/main/res/layout/fragment_insert_transaction_value.xml" value="0.1" />
+        <entry key="..\:/Workspace/playground/transaction/src/main/res/layout/fragment_transaction_confirmation.xml" value="0.18854166666666666" />
+        <entry key="..\:/Workspace/playground/transaction/src/main/res/layout/view_dialog_loading.xml" value="0.18854166666666666" />
       </map>
     </option>
+  </component>
+  <component name="EntryPointsManager">
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="androidx.compose.runtime.Stable" />
+    </list>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

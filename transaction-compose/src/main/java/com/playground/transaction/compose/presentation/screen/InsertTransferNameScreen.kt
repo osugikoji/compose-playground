@@ -17,14 +17,17 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.playground.core.extensions.isFullName
+import com.playground.transaction.compose.R
 import com.playground.transaction.compose.ui.components.button.StandardButton
 import com.playground.transaction.compose.ui.components.textfield.StandardTextField
-import com.playground.transaction.compose.ui.theme.PlaygroundColor
-import com.playground.transaction.compose.ui.theme.PlaygroundTypography
+import com.playground.transaction.compose.ui.theme.GrayMedium
+import com.playground.transaction.compose.ui.theme.Spacing
+import com.playground.transaction.compose.ui.theme.Typography
 import com.playground.transaction.compose.utils.safeRequestFocus
 
 @Composable
@@ -35,7 +38,6 @@ internal fun InsertTransferNameScreen(
     onNextAction: () -> Unit = {},
 ) {
     val focusRequester = remember { FocusRequester() }
-    val title = "Who do you want to send $transferValue?"
     focusRequester.safeRequestFocus()
     Column(
         modifier = modifier
@@ -44,35 +46,33 @@ internal fun InsertTransferNameScreen(
             .verticalScroll(rememberScrollState())
     ) {
         Text(
-            modifier = Modifier.padding(bottom = 8.dp),
-            text = title,
-            style = PlaygroundTypography.Title
+            modifier = Modifier.padding(bottom = Spacing.XS),
+            text = stringResource(id = R.string.insert_name_title, transferValue),
+            style = Typography.Title
         )
         Text(
-            modifier = Modifier.padding(bottom = 24.dp),
-            text = "Enter the recipient first and last name to proceed.",
-            style = PlaygroundTypography.Subtitle,
-            color = PlaygroundColor.GrayMedium
+            modifier = Modifier.padding(bottom = Spacing.XM),
+            text = stringResource(id = R.string.insert_name_subtitle),
+            style = Typography.Subtitle,
+            color = Color.GrayMedium
         )
         StandardTextField(
             value = nameState.value,
-            hint = "Complete name",
+            hint = stringResource(id = R.string.insert_name_hint),
+            keyboardOptions = KeyboardOptions.Default.copy(capitalization = KeyboardCapitalization.Words),
+            onTextChanged = { nameState.value = it },
             modifier = Modifier
                 .fillMaxWidth()
                 .focusRequester(focusRequester),
-            keyboardOptions = KeyboardOptions.Default.copy(
-                capitalization = KeyboardCapitalization.Words
-            ),
-            onTextChanged = { nameState.value = it }
         )
         Spacer(modifier = Modifier.weight(1f))
         StandardButton(
-            text = "Next",
+            text = stringResource(id = R.string.next_action),
+            enabled = nameState.value.isFullName(),
+            onClick = { onNextAction() },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 32.dp),
-            enabled = nameState.value.isFullName(),
-            onClick = { onNextAction() }
+                .padding(top = Spacing.BG),
         )
     }
 }

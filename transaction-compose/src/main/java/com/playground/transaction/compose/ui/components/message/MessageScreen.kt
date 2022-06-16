@@ -22,9 +22,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.playground.transaction.compose.ui.components.button.StandardButton
-import com.playground.transaction.compose.ui.theme.PlaygroundColor
 import com.playground.transaction.compose.ui.theme.PlaygroundTheme
-import com.playground.transaction.compose.ui.theme.PlaygroundTypography
+import com.playground.transaction.compose.ui.theme.Spacing
+import com.playground.transaction.compose.ui.theme.StatusSuccessMain
+import com.playground.transaction.compose.ui.theme.Typography
 
 @Composable
 internal fun MessageScreen(
@@ -38,7 +39,7 @@ internal fun MessageScreen(
 ) {
     Box(modifier = modifier
         .fillMaxSize()
-        .padding(horizontal = 32.dp),
+        .padding(horizontal = Spacing.BG),
         contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -58,7 +59,7 @@ internal fun SuccessMessageScreen(
 ) {
     MessageScreen(
         imageVector = Icons.Filled.CheckCircle,
-        imageTint = PlaygroundColor.StatusSuccessMain,
+        imageTint = Color.StatusSuccessMain,
         modifier = modifier,
         title = title,
         message = message,
@@ -73,7 +74,7 @@ private fun TopIcon(imageVector: ImageVector, imageTint: Color? = null) {
         modifier = Modifier
             .width(112.dp)
             .height(112.dp)
-            .padding(bottom = 8.dp),
+            .padding(bottom = Spacing.XS),
         imageVector = imageVector,
         contentDescription = null,
         colorFilter = imageTint?.let { ColorFilter.tint(it) }
@@ -84,17 +85,17 @@ private fun TopIcon(imageVector: ImageVector, imageTint: Color? = null) {
 private fun CenterTexts(title: String = "", message: String = "") {
     if (title.isNotEmpty()) {
         Text(
-            modifier = Modifier.padding(vertical = 8.dp),
+            modifier = Modifier.padding(vertical = Spacing.XS),
             text = title,
-            style = PlaygroundTypography.TitleBold,
+            style = Typography.TitleBold,
             textAlign = TextAlign.Center,
         )
     }
     if (message.isNotEmpty()) {
         Text(
-            modifier = Modifier.padding(bottom = 8.dp),
+            modifier = Modifier.padding(bottom = Spacing.XS),
             text = message,
-            style = PlaygroundTypography.Body,
+            style = Typography.Body,
             textAlign = TextAlign.Center,
         )
     }
@@ -105,7 +106,7 @@ private fun BottomButton(buttonText: String = "", buttonAction: () -> Unit = {})
     StandardButton(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 8.dp),
+            .padding(top = Spacing.XS),
         text = buttonText,
         onClick = buttonAction
     )

@@ -9,10 +9,12 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
-import com.playground.transaction.compose.ui.theme.PlaygroundColor
-import com.playground.transaction.compose.ui.theme.PlaygroundTypography
+import com.playground.transaction.compose.ui.theme.GrayLight
+import com.playground.transaction.compose.ui.theme.PrimaryDark
+import com.playground.transaction.compose.ui.theme.Typography
 
 @Composable
 internal fun StandardAppBar(
@@ -30,19 +32,26 @@ internal fun StandardAppBar(
         title = {
             Text(
                 text = title,
-                style = PlaygroundTypography.Title,
-                color = PlaygroundColor.GrayLight
+                style = Typography.Title,
+                color = Color.GrayLight
             )
         },
-        backgroundColor = PlaygroundColor.PrimaryDark,
+        backgroundColor = Color.PrimaryDark,
         navigationIcon = {
             startIcon?.let {
-                AppBarIcon(icon = it, description = startIconDescription, onClick = onStartIconAction)
+                AppBarIcon(
+                    icon = it,
+                    description = startIconDescription,
+                    onClick = onStartIconAction)
             }
         },
         actions = {
             endIcon?.let {
-                AppBarIcon(icon = it, description = endIconDescription, onClick = onEndIconAction)
+                AppBarIcon(
+                    icon = it,
+                    description = endIconDescription,
+                    onClick = onEndIconAction
+                )
             }
         }
     )
@@ -58,7 +67,7 @@ private fun AppBarIcon(
         Icon(
             imageVector = icon,
             contentDescription = description,
-            tint = PlaygroundColor.GrayLight
+            tint = Color.GrayLight
         )
     }
 }

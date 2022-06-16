@@ -13,17 +13,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Immutable
-object PlaygroundTypography {
+object Typography {
 
     @Stable
     val H5: TextStyle = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 20.sp,
-        color = PlaygroundColor.GrayDark
+        color = Color.GrayDark
     )
 
     @Stable
@@ -33,7 +32,7 @@ object PlaygroundTypography {
     val Title: TextStyle = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 18.sp,
-        color = PlaygroundColor.GrayDark
+        color = Color.GrayDark
     )
 
     @Stable
@@ -43,7 +42,7 @@ object PlaygroundTypography {
     val Subtitle: TextStyle = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
-        color = PlaygroundColor.GrayDark
+        color = Color.GrayDark
     )
 
     @Stable
@@ -53,7 +52,7 @@ object PlaygroundTypography {
     val Body: TextStyle = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
-        color = PlaygroundColor.GrayDark
+        color = Color.GrayDark
     )
 
     @Stable
@@ -63,47 +62,48 @@ object PlaygroundTypography {
 @Preview(name = "Playground Typography Preview")
 @Composable
 private fun PlaygroundTypographyPreview() {
-    val padding = 8.dp
-    Column(modifier = Modifier.fillMaxWidth().background(Color.White)) {
+    Column(modifier = Modifier
+        .fillMaxWidth()
+        .background(Color.White)) {
         Text(
             text = "H5",
-            modifier = Modifier.padding(padding),
-            style = PlaygroundTypography.H5
+            modifier = Modifier.padding(Spacing.XS),
+            style = Typography.H5
         )
         Text(
             text = "H5Bold",
-            modifier = Modifier.padding(padding),
-            style = PlaygroundTypography.H5Bold
+            modifier = Modifier.padding(Spacing.XS),
+            style = Typography.H5Bold
         )
         Text(
             text = "Title",
-            modifier = Modifier.padding(padding),
-            style = PlaygroundTypography.Title
+            modifier = Modifier.padding(Spacing.XS),
+            style = Typography.Title
         )
         Text(
             text = "TitleBold",
-            modifier = Modifier.padding(padding),
-            style = PlaygroundTypography.TitleBold
+            modifier = Modifier.padding(Spacing.XS),
+            style = Typography.TitleBold
         )
         Text(
             text = "Subtitle",
-            modifier = Modifier.padding(padding),
-            style = PlaygroundTypography.Subtitle
+            modifier = Modifier.padding(Spacing.XS),
+            style = Typography.Subtitle
         )
         Text(
             text = "SubtitleBold",
-            modifier = Modifier.padding(padding),
-            style = PlaygroundTypography.SubtitleBold
+            modifier = Modifier.padding(Spacing.XS),
+            style = Typography.SubtitleBold
         )
         Text(
             text = "Body",
-            modifier = Modifier.padding(padding),
-            style = PlaygroundTypography.Body
+            modifier = Modifier.padding(Spacing.XS),
+            style = Typography.Body
         )
         Text(
             text = "BodyBold",
-            modifier = Modifier.padding(padding),
-            style = PlaygroundTypography.BodyBold
+            modifier = Modifier.padding(Spacing.XS),
+            style = Typography.BodyBold
         )
     }
 }
