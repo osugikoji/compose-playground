@@ -44,6 +44,7 @@ android {
 
 dependencies {
     implementation(Dependencies.AndroidX.APP_COMPAT)
+    implementation(Dependencies.AndroidX.LIFECYCLE_RUNTIME_KTX)
     implementation(Dependencies.AndroidX.NAV_COMPOSABLE)
     implementation(Dependencies.DI.KOIN_COMPOSE)
     implementation(Dependencies.UI.COMPOSE_ACTIVITY)

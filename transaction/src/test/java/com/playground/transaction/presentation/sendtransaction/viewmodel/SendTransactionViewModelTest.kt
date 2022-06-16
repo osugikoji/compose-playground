@@ -242,4 +242,13 @@ class SendTransactionViewModelTest {
         val isExpectedState = viewModel.uiState.value is UIState.SendTransactionSuccess
         assertEquals(true, isExpectedState)
     }
+
+    @Test
+    fun `on getAllCountries then should return all countries`() {
+        // act
+        val countries = Country.getAllCountries()
+
+        // assert
+        assertEquals(false, countries.contains(Country.NONE))
+    }
 }

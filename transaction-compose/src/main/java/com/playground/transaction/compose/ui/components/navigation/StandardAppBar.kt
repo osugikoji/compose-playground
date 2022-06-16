@@ -1,4 +1,4 @@
-package com.playground.transaction.compose.ui.components
+package com.playground.transaction.compose.ui.components.navigation
 
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton

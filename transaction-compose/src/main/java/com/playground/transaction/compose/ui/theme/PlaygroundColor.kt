@@ -39,6 +39,12 @@ object PlaygroundColor {
 
     @Stable
     val GrayExtraLight = Color(0xFFF5F5F5)
+
+    @Stable
+    val StatusErrorMain = Color(0xFFE63746)
+
+    @Stable
+    val StatusSuccessMain = Color(0xFF7CD992)
 }
 
 @Preview(name = "Playground Color Preview")
@@ -80,6 +86,14 @@ private fun PlaygroundColorPreview() {
         Text(
             text = "GrayExtraLight",
             modifier = Modifier.buildModifier(PlaygroundColor.GrayExtraLight)
+        )
+        Text(
+            text = "StatusErrorMain",
+            modifier = Modifier.buildModifier(PlaygroundColor.StatusErrorMain)
+        )
+        Text(
+            text = "StatusSuccessMain",
+            modifier = Modifier.buildModifier(PlaygroundColor.StatusSuccessMain)
         )
     }
 }

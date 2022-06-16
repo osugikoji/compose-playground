@@ -75,8 +75,9 @@ internal class SendTransactionViewModel(
         _uiState.value = UIState.Loading
         runCatching {
             transactionUseCase.sendTransaction(transferValue, fullPhoneNumber, currencySymbol)
-        }.onSuccess { _uiState.value = UIState.SendTransactionSuccess }
-            .onFailure { _uiState.value = UIState.Error(it.message.orEmpty()) }
+        }.onSuccess {
+            _uiState.value = UIState.SendTransactionSuccess
+        }.onFailure { _uiState.value = UIState.Error(it.message.orEmpty()) }
     }
 
     sealed class UIState {

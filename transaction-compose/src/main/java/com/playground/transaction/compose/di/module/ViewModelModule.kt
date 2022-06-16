@@ -7,6 +7,6 @@ import org.koin.dsl.module
 internal class ViewModelModule {
 
     fun provide() = module {
-        viewModel { SendTransactionViewModel() }
+        viewModel { SendTransactionViewModel(get()) }
     }
 }

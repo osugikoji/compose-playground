@@ -77,4 +77,28 @@ class MoneyExtensionsTest {
         // assert
         assertEquals(BigDecimal(100).setScale(2), result)
     }
+
+    @Test
+    fun `on hasMoney when value is greater than 0 then should return true`() {
+        // arrange
+        val valueToFormat = "$ 0,01"
+
+        // act
+        val result = valueToFormat.hasMoney()
+
+        // assert
+        assertEquals(true, result)
+    }
+
+    @Test
+    fun `on hasMoney when value is 0 then should return false`() {
+        // arrange
+        val valueToFormat = "$ 0,00"
+
+        // act
+        val result = valueToFormat.hasMoney()
+
+        // assert
+        assertEquals(false, result)
+    }
 }

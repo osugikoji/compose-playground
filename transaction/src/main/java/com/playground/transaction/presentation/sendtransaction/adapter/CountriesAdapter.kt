@@ -3,14 +3,14 @@ package com.playground.transaction.presentation.sendtransaction.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.playground.transaction.databinding.ItemCountryBinding
 import com.playground.domain.model.Country
+import com.playground.transaction.databinding.ItemCountryBinding
 
 internal class CountriesAdapter(
     private val onItemClick: (Country) -> Unit = {}
 ) : RecyclerView.Adapter<CountriesAdapter.CountryViewHolder>() {
 
-    private val countries = Country.values().filter { it != Country.NONE }
+    private val countries = Country.getAllCountries()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
         val inflater = LayoutInflater.from(parent.context)

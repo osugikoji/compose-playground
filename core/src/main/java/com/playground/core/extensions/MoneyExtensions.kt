@@ -14,6 +14,10 @@ fun String.toCurrencyFormat(currencyCode: String): String {
     return value.toCurrencyFormat(currency)
 }
 
+fun String.hasMoney(): Boolean {
+    return this.formatToDigits().toBigDecimalOrNull()?.signum() == 1
+}
+
 fun BigDecimal.toCurrencyFormat(currencyCode: String): String {
     val currency = Currency.getInstance(currencyCode)
     return this.toCurrencyFormat(currency)

@@ -1,30 +1,105 @@
 package com.playground.transaction.compose.presentation.viewmodel
 
+import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.playground.core.extensions.currencyFormatToBigDecimal
 import com.playground.core.extensions.toCurrencyFormat
+import com.playground.domain.model.Country
 import com.playground.domain.model.CurrencyCode
+import com.playground.domain.usecase.TransactionUseCases
+import com.playground.transaction.compose.presentation.navigation.SendTransactionRoute
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
-internal class SendTransactionViewModel : ViewModel() {
+internal class SendTransactionViewModel(
+    private val transactionUseCase: TransactionUseCases,
+) : ViewModel() {
 
-    private val _transactionValue = MutableStateFlow("0".toCurrencyFormat(CurrencyCode.BRAZIL))
-    val transactionValue: StateFlow<String> = _transactionValue.asStateFlow()
+    val transferValue = mutableStateOf("")
 
-    private val _insertTransferName = MutableStateFlow("")
-    val insertTransferName: StateFlow<String> = _insertTransferName.asStateFlow()
+    val name = mutableStateOf("")
 
-    private val _enableButton = MutableStateFlow(false)
-    val enableButton: StateFlow<Boolean> = _enableButton
+    val phone = mutableStateOf("")
 
-    fun setTransferValue(text: String) {
-        _transactionValue.value = text.toCurrencyFormat(CurrencyCode.BRAZIL)
-        _enableButton.value = text.isNotEmpty()
+    val exchangedMoney = mutableStateOf("")
+
+    private val _hideTopBar = MutableStateFlow(false)
+    val hideTopBar: StateFlow<Boolean> = _hideTopBar
+
+    private val _navigation = MutableLiveData<SendTransactionRoute>()
+    val navigation: LiveData<SendTransactionRoute> = _navigation
+
+    private val _uiState = MutableStateFlow<UIState>(UIState.Idle)
+    val uiState: StateFlow<UIState> = _uiState
+
+    lateinit var selectedCountry: Country
+        private set
+
+    fun navigate(route: SendTransactionRoute) {
+        _navigation.value = route
     }
 
-    fun setInsertTransferName(text: String) {
-        _insertTransferName.value = text
-        _enableButton.value = text.isNotEmpty()
+    fun setSelectedCountry(country: Country) {
+        if (::selectedCountry.isInitialized && country != selectedCountry) {
+            phone.value = ""
+        }
+        this.selectedCountry = country
+    }
+
+    fun getFullPhoneNumber(): String {
+        return "${selectedCountry.phonePrefix} ${phone.value}"
+    }
+
+    fun getExchangeValue() = viewModelScope.launch {
+        _uiState.value = UIState.Loading
+        val transferValue = transferValue.value
+            .currencyFormatToBigDecimal(CurrencyCode.UNITED_STATES)
+        val currencySymbol = selectedCountry.currencySymbol
+        runCatching {
+            transactionUseCase.getExchangedValue(transferValue, currencySymbol)
+        }.onSuccess {
+            _uiState.value = UIState.Idle
+            exchangedMoney.value = it.toCurrencyFormat(currencySymbol)
+            _navigation.value = SendTransactionRoute.SUMMARY
+        }.onFailure {
+            _uiState.value = UIState.Error(it.message.orEmpty())
+        }
+    }
+
+    fun sendTransaction() = viewModelScope.launch {
+        _uiState.value = UIState.Loading
+        val transferValue = transferValue.value
+            .currencyFormatToBigDecimal(CurrencyCode.UNITED_STATES)
+        val fullPhoneNumber = getFullPhoneNumber()
+        val currencySymbol = selectedCountry.currencySymbol
+        runCatching {
+            transactionUseCase.sendTransaction(transferValue, fullPhoneNumber, currencySymbol)
+        }.onSuccess {
+            redirectToSuccessScreen()
+        }.onFailure {
+            _uiState.value = UIState.Error(it.message.orEmpty())
+        }
+    }
+
+    private suspend fun redirectToSuccessScreen() {
+        _hideTopBar.value = true
+        _uiState.value = UIState.Idle
+        delay(WAIT_APP_HIDE)
+        _navigation.value = SendTransactionRoute.SUCCESS
+    }
+
+    sealed class UIState {
+        object Loading : UIState()
+        data class Error(val message: String) : UIState()
+        object Idle : UIState()
+    }
+
+    companion object {
+        private const val WAIT_APP_HIDE = 500L
     }
 }

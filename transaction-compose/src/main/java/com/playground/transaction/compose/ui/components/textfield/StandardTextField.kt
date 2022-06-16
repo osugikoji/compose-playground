@@ -1,4 +1,4 @@
-package com.playground.transaction.compose.ui.components
+package com.playground.transaction.compose.ui.components.textfield
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -20,8 +20,12 @@ import com.playground.transaction.compose.ui.theme.PlaygroundColor
 @Composable
 internal fun StandardTextField(
     value: String,
-    hint: String,
     modifier: Modifier = Modifier,
+    placeholder: String = "",
+    hint: String = "",
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    maxLines: Int = 1,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     selectAt: Int? = null,
     onTextChanged: (String) -> Unit = {},
@@ -36,8 +40,12 @@ internal fun StandardTextField(
             onTextChanged(it.text)
         },
         modifier = modifier,
+        enabled = enabled,
+        readOnly = readOnly,
         keyboardOptions = keyboardOptions,
+        maxLines = maxLines,
         shape = RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp),
+        placeholder = { Text(text = placeholder) },
         label = { Text(text = hint) },
         colors = TextFieldDefaults.textFieldColors(
             backgroundColor = PlaygroundColor.GrayExtraLight

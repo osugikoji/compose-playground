@@ -15,6 +15,7 @@ object Dependencies {
         const val NAV_UI_KTX = "androidx.navigation:navigation-ui-ktx:$NAV_VERSION"
         const val NAV_COMPOSABLE = "androidx.navigation:navigation-compose:$NAV_VERSION"
         const val ESPRESSO_IDLING = "androidx.test.espresso:espresso-idling-resource:$ESPRESSO_VERSION"
+        const val LIFECYCLE_RUNTIME_KTX = "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1"
     }
 
     object UI {
