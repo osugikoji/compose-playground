@@ -59,7 +59,7 @@ object Typography {
     val BodyBold: TextStyle = Subtitle.copy(fontWeight = FontWeight.Bold)
 }
 
-@Preview(name = "Playground Typography Preview")
+@Preview
 @Composable
 private fun PlaygroundTypographyPreview() {
     Column(modifier = Modifier

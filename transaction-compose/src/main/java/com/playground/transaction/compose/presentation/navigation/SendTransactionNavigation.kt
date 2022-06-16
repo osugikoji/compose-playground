@@ -2,9 +2,11 @@ package com.playground.transaction.compose.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.playground.transaction.compose.R
 import com.playground.transaction.compose.presentation.screen.InsertRecipientPhoneScreen
 import com.playground.transaction.compose.presentation.screen.InsertTransferNameScreen
 import com.playground.transaction.compose.presentation.screen.InsertTransferValueScreen
@@ -12,15 +14,6 @@ import com.playground.transaction.compose.presentation.screen.SelectCountryScree
 import com.playground.transaction.compose.presentation.screen.SendTransactionSummaryScreen
 import com.playground.transaction.compose.presentation.viewmodel.SendTransactionViewModel
 import com.playground.transaction.compose.ui.components.message.SuccessMessageScreen
-
-internal enum class SendTransactionRoute {
-    INSERT_VALUE,
-    INSERT_NAME,
-    SELECT_COUNTRY,
-    INSERT_PHONE,
-    SUMMARY,
-    SUCCESS,
-}
 
 @Composable
 internal fun SendTransactionNavigation(
@@ -79,8 +72,8 @@ internal fun SendTransactionNavigation(
         composable(SendTransactionRoute.SUCCESS.name) {
             val transferMoney = viewModel.transferValue.value
             SuccessMessageScreen(
-                title = "Transfer executed successfully",
-                message = "The transfer in the amount of $transferMoney was successful.",
+                title = stringResource(id = R.string.transaction_success_title),
+                message = stringResource(id = R.string.transaction_success_message, transferMoney),
                 buttonAction = onFinish
             )
         }

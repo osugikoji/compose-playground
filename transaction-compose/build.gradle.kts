@@ -55,3 +55,8 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":core"))
 }
+
+detekt {
+    buildUponDefaultConfig = true
+    config = files("$projectDir/detekt-compose.yml")
+}

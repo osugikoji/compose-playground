@@ -13,47 +13,47 @@ import androidx.compose.ui.tooling.preview.Preview
 
 @Stable
 inline val Color.Companion.PrimaryDark: Color
-    get() = Color(0xFF0D47A1)
+    get() = Color(color = 0xFF0D47A1)
 
 @Stable
 inline val Color.Companion.PrimaryMain: Color
-    get() = Color(0xFF2196F3)
+    get() = Color(color = 0xFF2196F3)
 
 @Stable
 inline val Color.Companion.PrimaryMedium: Color
-    get() = Color(0xFF64B5F6)
+    get() = Color(color = 0xFF64B5F6)
 
 @Stable
 inline val Color.Companion.AccentMain: Color
-    get() = Color(0xFF448AFF)
+    get() = Color(color = 0xFF448AFF)
 
 @Stable
 inline val Color.Companion.GrayDark: Color
-    get() = Color(0xFF212121)
+    get() = Color(color = 0xFF212121)
 
 @Stable
 inline val Color.Companion.GrayMain: Color
-    get() = Color(0xFF424242)
+    get() = Color(color = 0xFF424242)
 
 @Stable
 inline val Color.Companion.GrayMedium: Color
-    get() = Color(0xFF9E9E9E)
+    get() = Color(color = 0xFF9E9E9E)
 
 @Stable
 inline val Color.Companion.GrayLight: Color
-    get() = Color(0xFFE0E0E0)
+    get() = Color(color = 0xFFE0E0E0)
 
 @Stable
 inline val Color.Companion.GrayExtraLight: Color
-    get() = Color(0xFFF5F5F5)
+    get() = Color(color = 0xFFF5F5F5)
 
 @Stable
 inline val Color.Companion.StatusErrorMain: Color
-    get() = Color(0xFFE63746)
+    get() = Color(color = 0xFFE63746)
 
 @Stable
 inline val Color.Companion.StatusSuccessMain: Color
-    get() = Color(0xFF7CD992)
+    get() = Color(color = 0xFF7CD992)
 
 @Preview
 @Composable

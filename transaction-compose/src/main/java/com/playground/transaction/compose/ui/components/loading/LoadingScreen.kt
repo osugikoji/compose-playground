@@ -17,7 +17,7 @@ import com.playground.transaction.compose.ui.theme.PlaygroundTheme
 
 @Composable
 internal fun LoadingScreen() {
-    val backgroundColor = Color(0xFFB3000000)
+    val backgroundColor = Color(color = 0xFFB3000000)
     Box(Modifier
         .background(backgroundColor)
         .fillMaxWidth()

@@ -28,7 +28,8 @@ internal fun SelectCountryScreen(
     onSelectedCountry: (Country) -> Unit = {},
 ) {
     Column(
-        modifier = modifier.fillMaxWidth()) {
+        modifier = modifier.fillMaxWidth()
+    ) {
         Text(
             modifier = Modifier.padding(bottom = Spacing.XS),
             text = stringResource(id = R.string.select_country_title),
@@ -51,10 +52,11 @@ internal fun SelectCountryScreen(
 
 @Composable
 private fun CountryItem(country: Country, onClickItem: (Country) -> Unit) {
-    Row(modifier = Modifier
-        .clickable { onClickItem(country) }
-        .fillMaxWidth()
-        .padding(Spacing.MD)
+    Row(
+        modifier = Modifier
+            .clickable { onClickItem(country) }
+            .fillMaxWidth()
+            .padding(Spacing.MD)
     ) {
         Image(painter = painterResource(id = country.icon), contentDescription = null)
         Text(

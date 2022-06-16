@@ -24,7 +24,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -166,10 +165,4 @@ private fun BoxScope.ErrorState(errorMessage: String) {
         modifier = Modifier.align(Alignment.BottomCenter)
     )
     scope.launch { snackBarHostState.showSnackbar(errorMessage) }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun SendTransactionPreview() {
-
 }

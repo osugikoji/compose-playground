@@ -30,4 +30,8 @@
     <string name="transaction_summary_phone">Phone number</string>
     <string name="transaction_summary_exchange">Transfer exchange</string>
     <string name="transaction_summary_transfer">Transfer</string>
+
+    <!-- Transaction Success -->
+    <string name="transaction_success_title">Transfer executed successfully</string>
+    <string name="transaction_success_message">The transfer in the amount of %s was successful.</string>
 </resources>

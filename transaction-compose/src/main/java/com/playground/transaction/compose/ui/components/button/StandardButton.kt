@@ -33,9 +33,8 @@ internal fun StandardButton(
             disabledBackgroundColor = Color.GrayExtraLight,
             disabledContentColor = Color.GrayLight
         ),
-        onClick = onClick) {
-        Text(text = text)
-    }
+        onClick = onClick
+    ) { Text(text = text) }
 }
 
 @Preview
