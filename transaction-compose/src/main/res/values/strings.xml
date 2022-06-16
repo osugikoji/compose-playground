@@ -3,6 +3,9 @@
     <!-- Generic -->
     <string name="next_action">Next</string>
 
+    <!-- Send Transaction -->
+    <string name="send_transaction_title">Send money</string>
+
     <!-- Insert Transfer Value -->
     <string name="insert_transaction_title">What is the transfer value</string>
     <string name="insert_transaction_subtitle">Enter a real value that you want to send.</string>

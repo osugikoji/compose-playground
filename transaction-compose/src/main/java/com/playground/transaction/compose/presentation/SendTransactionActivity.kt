@@ -24,9 +24,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.playground.transaction.compose.R
 import com.playground.transaction.compose.di.component.CustomKoinComponent
 import com.playground.transaction.compose.presentation.navigation.SendTransactionNavigation
 import com.playground.transaction.compose.presentation.navigation.SendTransactionRoute
@@ -118,7 +120,7 @@ private fun TopAppBar(
         exit = slideOutVertically(targetOffsetY = { -it }),
         content = {
             StandardAppBar(
-                title = "Send money",
+                title = stringResource(id = R.string.send_transaction_title),
                 startIcon = Icons.Filled.ArrowBack,
                 endIcon = Icons.Filled.Close,
                 onStartIconAction = onBackAction,
