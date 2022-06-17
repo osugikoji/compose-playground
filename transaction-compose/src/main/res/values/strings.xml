@@ -20,14 +20,14 @@
 
     <!-- Insert Phone -->
     <string name="insert_phone_title">What is the recipient phone?</string>
-    <string name="insert_phone_subtitle">Enter the recipient first and last name to proceed.</string>
+    <string name="insert_phone_subtitle">Enter the recipient phone number</string>
     <string name="insert_phone_prefix_hint">Prefix</string>
     <string name="insert_phone_hint">Phone number</string>
     <string name="insert_phone_content_desc">Enter the recipient phone number</string>
 
     <!-- Select Country -->
     <string name="select_country_title">What is the recipient country?</string>
-    <string name="select_country_subtitle">Enter the recipient first and last name to proceed.</string>
+    <string name="select_country_subtitle">Select the recipient country.</string>
 
     <!-- Transaction Summary -->
     <string name="transaction_summary_title">Transferring</string>

@@ -72,8 +72,9 @@ private fun TopSection(transferMoney: String, recipientName: String) {
         modifier = Modifier.padding(bottom = Spacing.XXS)
     )
     Text(
-        text = stringResource(id = R.string.transaction_summary_title, recipientName.uppercase()),
-        style = Typography.SubtitleBold
+        text = stringResource(id = R.string.transaction_summary_recipient_name,
+            recipientName.uppercase()),
+        style = Typography.SubtitleBold,
     )
 }
 

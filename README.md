@@ -44,3 +44,11 @@ This project uses the following quality tools to maintain consistent codebases:
 - [kover](https://github.com/Kotlin/kotlinx-kover), a code coverage tool for Kotlin;
 
 Always make sure to run `./gradlew detekt ktlintCheck koverVerify` before opening a pull request to see if you have any code style issues and avoid CI server check errors.
+
+## 🎨 Design System
+
+The features are designed according to the [Playground DS](https://www.figma.com/file/gxsSq4J4iEXazXogeDu5CC/Playground-DS?node-id=0%3A1).
+
+## 🤝 Contributions
+
+Feel free to make a suggestion or if you find any error in this project, please open an issue.
