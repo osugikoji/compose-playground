@@ -16,7 +16,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        val appId = gradleLocalProperties(rootDir).getProperty("APP_ID")
+        val key = "OPEN_EXCHANGE_APP_ID"
+        val appId = System.getenv().getOrDefault(key, gradleLocalProperties(rootDir).getProperty(key))
         buildConfigField("String", "APP_ID", "\"$appId\"")
     }
 
