@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("kover")
 }
 
 android {
@@ -54,9 +55,21 @@ dependencies {
     implementation(Dependencies.UI.COMPOSE_MATERIAL)
     implementation(project(":domain"))
     implementation(project(":core"))
+
+    testImplementation(Dependencies.UnitTest.JUNIT)
+    testImplementation(Dependencies.UnitTest.MOCKK)
+    testImplementation(Dependencies.UnitTest.CORE_TESTING)
+    testImplementation(Dependencies.UnitTest.COROUTINES_TEST)
 }
 
 detekt {
     buildUponDefaultConfig = true
     config = files("$projectDir/detekt-compose.yml")
+}
+
+tasks.koverVerify {
+    rule {
+        name = "Minimal line coverage rate in percents"
+        bound { minValue = 80 }
+    }
 }

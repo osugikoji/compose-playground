@@ -1,4 +1,4 @@
-package com.playground.transaction.infrastructure
+package com.playground.test.infrastructure
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.TestDispatcher

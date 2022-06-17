@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.playground.domain.R
 import com.playground.domain.model.Country
 import com.playground.domain.usecase.TransactionUseCases
-import com.playground.transaction.infrastructure.MainDispatcherRule
+import com.playground.test.infrastructure.MainDispatcherRule
 import com.playground.transaction.presentation.sendtransaction.viewmodel.SendTransactionViewModel.UIState
 import io.mockk.coEvery
 import io.mockk.mockk
