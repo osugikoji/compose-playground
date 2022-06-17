@@ -7,11 +7,7 @@
             android:name=".presentation.SendTransactionActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".ui.components.message.MessageActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustResize" />
     </application>
 </manifest>

@@ -42,7 +42,8 @@ internal fun StandardAppBar(
                 AppBarIcon(
                     icon = it,
                     description = startIconDescription,
-                    onClick = onStartIconAction)
+                    onClick = onStartIconAction,
+                )
             }
         },
         actions = {
@@ -50,7 +51,7 @@ internal fun StandardAppBar(
                 AppBarIcon(
                     icon = it,
                     description = endIconDescription,
-                    onClick = onEndIconAction
+                    onClick = onEndIconAction,
                 )
             }
         }

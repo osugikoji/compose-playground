@@ -18,6 +18,8 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import com.playground.core.extensions.hasMoney
@@ -64,7 +66,7 @@ internal fun TitleSectionScreen() {
     Text(
         modifier = Modifier.padding(bottom = Spacing.XS),
         text = stringResource(id = R.string.insert_transaction_title),
-        style = Typography.Title
+        style = Typography.Title,
     )
     Text(
         modifier = Modifier.padding(bottom = Spacing.XM),
@@ -81,16 +83,19 @@ internal fun TextFieldSection(
 ) {
     val focusRequester = remember { FocusRequester() }
     val transferMoney = transferValueState.value.toCurrencyFormat(currencyCode)
+    val textFieldContentDescription = stringResource(id = R.string.insert_transaction_content_desc)
     focusRequester.safeRequestFocus()
     StandardTextField(
-        value = transferMoney,
+        value = transferValueState.value,
+        placeholder = transferMoney,
         selectAt = transferMoney.length,
         hint = stringResource(id = R.string.insert_transaction_hint),
         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
         onTextChanged = { transferValueState.value = it.toCurrencyFormat(currencyCode) },
         modifier = Modifier
             .fillMaxWidth()
-            .focusRequester(focusRequester),
+            .focusRequester(focusRequester)
+            .semantics { contentDescription = textFieldContentDescription }
     )
 }
 

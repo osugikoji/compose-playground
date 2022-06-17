@@ -18,15 +18,17 @@ import com.playground.transaction.compose.ui.theme.PlaygroundTheme
 @Composable
 internal fun LoadingScreen() {
     val backgroundColor = Color(color = 0xFFB3000000)
-    Box(Modifier
-        .background(backgroundColor)
-        .fillMaxWidth()
-        .fillMaxHeight()
-        .clickable(
-            interactionSource = remember { MutableInteractionSource() },
-            indication = null,
-            enabled = true,
-            onClick = {}),
+    Box(
+        Modifier
+            .background(backgroundColor)
+            .fillMaxWidth()
+            .fillMaxHeight()
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null,
+                enabled = true,
+                onClick = {}
+            ),
         contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator()

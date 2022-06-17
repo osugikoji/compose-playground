@@ -37,9 +37,10 @@ internal fun MessageScreen(
     buttonText: String = "",
     buttonAction: () -> Unit = {},
 ) {
-    Box(modifier = modifier
-        .fillMaxSize()
-        .padding(horizontal = Spacing.BG),
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(horizontal = Spacing.BG),
         contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {

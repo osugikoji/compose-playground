@@ -62,9 +62,11 @@ object Typography {
 @Preview
 @Composable
 private fun PlaygroundTypographyPreview() {
-    Column(modifier = Modifier
-        .fillMaxWidth()
-        .background(Color.White)) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color.White)
+    ) {
         Text(
             text = "H5",
             modifier = Modifier.padding(Spacing.XS),

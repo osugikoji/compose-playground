@@ -53,6 +53,8 @@ object Dependencies {
         const val MOCKK = "io.mockk:mockk:1.12.3"
         const val MOCK_WEB_SERVER = "com.squareup.okhttp3:mockwebserver:4.9.3"
         const val COROUTINES_TEST = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.2"
+        const val COMPOSE_JUNIT = "androidx.compose.ui:ui-test-junit4:$COMPOSE_VERSION"
+        const val COMPOSE_MANIFEST = "androidx.compose.ui:ui-test-manifest:$COMPOSE_VERSION"
     }
 
     object Classpath {

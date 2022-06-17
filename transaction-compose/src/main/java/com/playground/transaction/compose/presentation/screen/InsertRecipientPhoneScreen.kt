@@ -20,6 +20,8 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import com.playground.core.extensions.formatToDigits
@@ -78,6 +80,7 @@ private fun TextFieldSection(
     phoneCountry: Country,
 ) {
     val focusRequester = remember { FocusRequester() }
+    val textFieldContentDescription = stringResource(id = R.string.insert_phone_content_desc)
     focusRequester.safeRequestFocus()
     Row {
         StandardTextField(
@@ -90,12 +93,13 @@ private fun TextFieldSection(
             value = phoneState.value,
             selectAt = phoneState.value.length,
             hint = stringResource(id = R.string.insert_phone_hint),
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+            onTextChanged = { phoneState.value = it.formatToPhone(phoneCountry.countryIso) },
             modifier = Modifier
                 .focusRequester(focusRequester)
                 .weight(2f)
-                .padding(start = Spacing.XM),
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
-            onTextChanged = { phoneState.value = it.formatToPhone(phoneCountry.countryIso) }
+                .padding(start = Spacing.XM)
+                .semantics { contentDescription = textFieldContentDescription },
         )
     }
 }
@@ -109,11 +113,11 @@ private fun ButtonSection(
     val enableButton = phoneState.value.formatToDigits().length >= phoneCountry.phoneNumberLength
     StandardButton(
         text = stringResource(id = R.string.next_action),
+        enabled = enableButton,
+        onClick = { onNextAction() },
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = Spacing.BG),
-        enabled = enableButton,
-        onClick = { onNextAction() }
     )
 }
 

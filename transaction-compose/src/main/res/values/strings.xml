@@ -9,18 +9,21 @@
     <!-- Insert Transfer Value -->
     <string name="insert_transaction_title">What is the transfer value</string>
     <string name="insert_transaction_subtitle">Enter a real value that you want to send.</string>
+    <string name="insert_transaction_content_desc">Enter a dollar value</string>
     <string name="insert_transaction_hint">Value</string>
 
     <!-- Insert Transfer Value -->
     <string name="insert_name_title">Who do you want to send %s?</string>
     <string name="insert_name_subtitle">Enter the recipient first and last name to proceed.</string>
     <string name="insert_name_hint">Complete name</string>
+    <string name="insert_name_content_desc">Enter the recipient full name</string>
 
     <!-- Insert Phone -->
     <string name="insert_phone_title">What is the recipient phone?</string>
     <string name="insert_phone_subtitle">Enter the recipient first and last name to proceed.</string>
     <string name="insert_phone_prefix_hint">Prefix</string>
     <string name="insert_phone_hint">Phone number</string>
+    <string name="insert_phone_content_desc">Enter the recipient phone number</string>
 
     <!-- Select Country -->
     <string name="select_country_title">What is the recipient country?</string>
@@ -36,5 +39,5 @@
 
     <!-- Transaction Success -->
     <string name="transaction_success_title">Transfer executed successfully</string>
-    <string name="transaction_success_message">The transfer in the amount of %s was successful.</string>
+    <string name="transaction_success_message">The transfer in the amount of %s was sent successfully.</string>
 </resources>

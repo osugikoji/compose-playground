@@ -41,6 +41,11 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Dependencies.COMPOSE_VERSION
     }
+
+    testOptions {
+        animationsDisabled = true
+        unitTests.isIncludeAndroidResources = true
+    }
 }
 
 dependencies {
@@ -56,10 +61,15 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":core"))
 
+    testImplementation(Dependencies.UnitTest.ESPRESSO_CORE)
     testImplementation(Dependencies.UnitTest.JUNIT)
-    testImplementation(Dependencies.UnitTest.MOCKK)
+    testImplementation(Dependencies.UnitTest.ROBOLECTRIC)
     testImplementation(Dependencies.UnitTest.CORE_TESTING)
+    testImplementation(Dependencies.UnitTest.MOCKK)
     testImplementation(Dependencies.UnitTest.COROUTINES_TEST)
+    testImplementation(Dependencies.UnitTest.MOCK_WEB_SERVER)
+    testImplementation(Dependencies.UnitTest.COMPOSE_JUNIT)
+    debugImplementation(Dependencies.UnitTest.COMPOSE_MANIFEST)
 }
 
 detekt {
@@ -70,6 +80,6 @@ detekt {
 tasks.koverVerify {
     rule {
         name = "Minimal line coverage rate in percents"
-        bound { minValue = 80 }
+        bound { minValue = 60 }
     }
 }

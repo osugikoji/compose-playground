@@ -19,6 +19,8 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.tooling.preview.Preview
 import com.playground.core.extensions.isFullName
@@ -38,6 +40,7 @@ internal fun InsertTransferNameScreen(
     onNextAction: () -> Unit = {},
 ) {
     val focusRequester = remember { FocusRequester() }
+    val textFieldContentDescription = stringResource(id = R.string.insert_name_content_desc)
     focusRequester.safeRequestFocus()
     Column(
         modifier = modifier
@@ -63,7 +66,8 @@ internal fun InsertTransferNameScreen(
             onTextChanged = { nameState.value = it },
             modifier = Modifier
                 .fillMaxWidth()
-                .focusRequester(focusRequester),
+                .focusRequester(focusRequester)
+                .semantics { contentDescription = textFieldContentDescription },
         )
         Spacer(modifier = Modifier.weight(1f))
         StandardButton(

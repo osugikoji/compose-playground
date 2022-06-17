@@ -4,8 +4,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -35,7 +38,12 @@ internal fun SendTransactionSummaryScreen(
     modifier: Modifier = Modifier,
     onTransferAction: () -> Unit = {},
 ) {
-    Column(modifier = modifier) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
+            .verticalScroll(rememberScrollState())
+    ) {
         TopSection(transferMoney = transferMoney, recipientName = recipientName)
         Divider(modifier = Modifier.padding(top = Spacing.XXL))
         CountryDetailsRow(country = country)
@@ -46,7 +54,7 @@ internal fun SendTransactionSummaryScreen(
         StandardButton(
             text = stringResource(id = R.string.transaction_summary_transfer),
             modifier = Modifier.fillMaxWidth(),
-            onClick = { onTransferAction() }
+            onClick = onTransferAction,
         )
     }
 }
