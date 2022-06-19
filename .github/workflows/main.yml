@@ -26,7 +26,26 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Run Clean
+        run: ./gradlew clean
       - name: Run Detekt
-        run: ./gradlew clean detekt
+        run: ./gradlew detekt
       - name: Run Ktlint
-        run: ./gradlew clean ktlintCheck
+        run: ./gradlew ktlintCheck
+      - name: Run Lint
+        run: ./gradlew lintDebug
+
+  code-coverage:
+    name: Code Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run Kover Verify
+        run: ./gradlew koverVerify
+      - name: Run Kover Report
+        run: ./gradlew koverXmlReport
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v2
+        with:
+          files: core/build/reports/kover/project-xml/report.xml

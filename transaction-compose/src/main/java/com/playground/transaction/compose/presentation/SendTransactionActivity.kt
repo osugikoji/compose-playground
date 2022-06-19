@@ -18,6 +18,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -166,5 +167,7 @@ private fun BoxScope.ErrorState(errorMessage: String) {
         snackBarHostState = snackBarHostState,
         modifier = Modifier.align(Alignment.BottomCenter)
     )
-    scope.launch { snackBarHostState.showSnackbar(errorMessage) }
+    LaunchedEffect(Unit) {
+        scope.launch { snackBarHostState.showSnackbar(errorMessage) }
+    }
 }

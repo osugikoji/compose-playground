@@ -102,6 +102,6 @@ internal fun TextFieldSection(
 @Preview(showBackground = true)
 @Composable
 private fun InsertTransferValuePreview() {
-    val transferValue = mutableStateOf("100")
+    val transferValue = remember { mutableStateOf("100") }
     InsertTransferValueScreen(transferValueState = transferValue)
 }
