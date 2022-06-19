@@ -48,7 +48,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Test Report
-          path: core/build/reports/tests/testDebugUnitTest
+          path: transaction/build/reports/tests/testDebugUnitTest
       - name: Run Kover Report
         run: ./gradlew koverXmlReport
       - name: Upload coverage reports
