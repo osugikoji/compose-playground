@@ -18,4 +18,15 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: APK
-          path: app/build/outputs/apk/rekease/app-release-unsigned.apk
+          path: app/build/outputs/apk/release/app-release-unsigned.apk
+
+  code-check:
+    name: Code Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run Detekt
+        run: ./gradlew clean detekt
+      - name: Run Ktlint
+        run: ./gradlew clean ktlintCheck
