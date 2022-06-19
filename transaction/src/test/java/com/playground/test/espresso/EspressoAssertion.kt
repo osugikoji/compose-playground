@@ -3,7 +3,6 @@ package com.playground.test.espresso
 import androidx.annotation.IdRes
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.ViewInteraction
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -16,8 +15,6 @@ object EspressoAssertion {
     }
 
     fun isVisible(text: String): ViewInteraction {
-        return onView(withText(text))
-            .perform(ViewActions.scrollTo())
-            .check(matches(isDisplayed()))
+        return onView(withText(text)).check(matches(isDisplayed()))
     }
 }
