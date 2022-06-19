@@ -48,6 +48,12 @@ jobs:
           distribution: 'adopt'
       - name: Run Kover Verify
         run: ./gradlew koverVerify
+      - name: Run Test Report
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: APK
+          path: core/build/reports/tests/testDebugUnitTest
       - name: Run Kover Report
         run: ./gradlew koverXmlReport
       - name: Upload coverage reports
