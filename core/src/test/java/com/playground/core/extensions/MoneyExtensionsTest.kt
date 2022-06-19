@@ -10,7 +10,7 @@ class MoneyExtensionsTest {
 
     @Before
     fun setup() {
-        val locale = Locale("pt-BR")
+        val locale = Locale.ENGLISH
         Locale.setDefault(locale)
     }
 
@@ -47,7 +47,7 @@ class MoneyExtensionsTest {
         val result = valueToFormat.toCurrencyFormat("USD")
 
         // assert
-        assertEquals("US$ 0,00", result)
+        assertEquals("$ 0,00", result)
     }
 
     @Test
