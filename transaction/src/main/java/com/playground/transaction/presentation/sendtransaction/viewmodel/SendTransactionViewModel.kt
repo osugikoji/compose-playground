@@ -65,10 +65,7 @@ internal class SendTransactionViewModel(
                 exchangedValue = it.toCurrencyFormat(selectedCountry.currencySymbol)
             )
             _uiState.value = UIState.TransactionExchangedSuccess
-        }.onFailure {
-            throw it
-            _uiState.value = UIState.Error(it.message.orEmpty())
-        }
+        }.onFailure { _uiState.value = UIState.Error(it.message.orEmpty()) }
     }
 
     fun sendTransaction() = viewModelScope.launch {
