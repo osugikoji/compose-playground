@@ -9,6 +9,7 @@ import com.playground.transaction.presentation.sendtransaction.viewmodel.SendTra
 import io.mockk.coEvery
 import io.mockk.mockk
 import java.math.BigDecimal
+import java.util.Locale
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -29,12 +30,14 @@ class SendTransactionViewModelTest {
     @Before
     fun setup() {
         viewModel = SendTransactionViewModel(transactionUseCases)
+        val locale = Locale.ENGLISH
+        Locale.setDefault(locale)
     }
 
     @Test
     fun `on setTransferValue then should set given value`() {
         // act
-        viewModel.setTransferValue("US$ 100,00")
+        viewModel.setTransferValue("$ 100,00")
 
         // assert0
         assertEquals(BigDecimal(100).setScale(2), viewModel.dataHolder.transferValue)
@@ -52,7 +55,7 @@ class SendTransactionViewModelTest {
     @Test
     fun `on setTransferValue when given a valid value then should enable button`() {
         // act
-        viewModel.setTransferValue("US$ 100,00")
+        viewModel.setTransferValue("$ 100,00")
 
         // assert
         assertEquals(true, viewModel.enableButton.value)
@@ -158,7 +161,7 @@ class SendTransactionViewModelTest {
     @Test
     fun `on getTransactionExchangedValue when request failed then inform error state`() {
         // arrange
-        val transferValue = "US$ 100,00"
+        val transferValue = "$ 100,00"
         coEvery {
             transactionUseCases.getExchangedValue(BigDecimal(100).setScale(2), "BRL")
         } throws Exception("Request failed")
@@ -176,7 +179,7 @@ class SendTransactionViewModelTest {
     @Test
     fun `on getExchangedValue when request succeed then inform success state and build summary model`() {
         // arrange
-        val transferValue = "US$ 100,00"
+        val transferValue = "$ 100,00"
         coEvery {
             transactionUseCases.getExchangedValue(BigDecimal(100).setScale(2), "BRL")
         } returns BigDecimal(500)
@@ -191,18 +194,18 @@ class SendTransactionViewModelTest {
         // assert
         val isExpectedState = viewModel.uiState.value is UIState.TransactionExchangedSuccess
         assertEquals(true, isExpectedState)
-        assertEquals("US$ 100,00", viewModel.summary.transferValue)
+        assertEquals("$ 100.00", viewModel.summary.transferValue)
         assertEquals("Lionel Messi", viewModel.summary.recipientName)
         assertEquals(R.string.country_brazil, viewModel.summary.countryName)
         assertEquals(R.drawable.ic_brazil_flag, viewModel.summary.countryIcon)
         assertEquals("+55 11 1111-1111", viewModel.summary.fullPhoneNumber)
-        assertEquals("R$ 500,00", viewModel.summary.exchangedValue)
+        assertEquals("R$ 500.00", viewModel.summary.exchangedValue)
     }
 
     @Test
     fun `on sendTransaction when request failed then inform error state`() {
         // arrange
-        val transferValue = "US$ 100,00"
+        val transferValue = "$ 100,00"
         val transferValueBigDecimal = BigDecimal(100).setScale(2)
         val fullPhoneNumber = "+55 11 1111-1111"
         val currency = "BRL"
@@ -224,7 +227,7 @@ class SendTransactionViewModelTest {
     @Test
     fun `on sendTransaction when request succeed then inform send transaction success state`() {
         // arrange
-        val transferValue = "US$ 100,00"
+        val transferValue = "$ 100,00"
         val transferValueBigDecimal = BigDecimal(100).setScale(2)
         val fullPhoneNumber = "+55 11 1111-1111"
         val currency = "BRL"
