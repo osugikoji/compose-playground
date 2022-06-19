@@ -1,10 +1,18 @@
 package com.playground.core.extensions
 
 import java.math.BigDecimal
+import java.util.Locale
 import org.junit.Assert.assertEquals
+import org.junit.Before
 import org.junit.Test
 
 class MoneyExtensionsTest {
+
+    @Before
+    fun setup() {
+        val locale = Locale("pt-BR")
+        Locale.setDefault(locale)
+    }
 
     @Test
     fun `on toCurrencyFormat when value is empty then should return zero currency value`() {
@@ -15,7 +23,7 @@ class MoneyExtensionsTest {
         val result = valueToFormat.toCurrencyFormat("BRL")
 
         // assert
-        assertEquals("R$ 0,00", result)
+        assertEquals("R$ 0.00", result)
     }
 
     @Test
@@ -27,7 +35,7 @@ class MoneyExtensionsTest {
         val result = valueToFormat.toCurrencyFormat("BRL")
 
         // assert
-        assertEquals("R$ 1,00", result)
+        assertEquals("R$ 1.00", result)
     }
 
     @Test
@@ -51,13 +59,13 @@ class MoneyExtensionsTest {
         val result = valueToFormat.toCurrencyFormat("BRL")
 
         // assert
-        assertEquals("R$ 100,00", result)
+        assertEquals("R$ 100.00", result)
     }
 
     @Test
     fun `on currencyFormatToBigDecimal when given value has different currency of informed locale then return zero`() {
         // arrange
-        val valueToFormat = "R$ 100,00"
+        val valueToFormat = "R$ 100.00"
 
         // act
         val result = valueToFormat.currencyFormatToBigDecimal("USD")
@@ -69,7 +77,7 @@ class MoneyExtensionsTest {
     @Test
     fun `on currencyFormatToBigDecimal when inform correct value then should convert correctly`() {
         // arrange
-        val valueToFormat = "$ 100,00"
+        val valueToFormat = "$ 100.00"
 
         // act
         val result = valueToFormat.currencyFormatToBigDecimal("USD")
@@ -81,7 +89,7 @@ class MoneyExtensionsTest {
     @Test
     fun `on hasMoney when value is greater than 0 then should return true`() {
         // arrange
-        val valueToFormat = "$ 0,01"
+        val valueToFormat = "$ 0.01"
 
         // act
         val result = valueToFormat.hasMoney()
@@ -93,7 +101,7 @@ class MoneyExtensionsTest {
     @Test
     fun `on hasMoney when value is 0 then should return false`() {
         // arrange
-        val valueToFormat = "$ 0,00"
+        val valueToFormat = "$ 0.00"
 
         // act
         val result = valueToFormat.hasMoney()
