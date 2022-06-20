@@ -4,11 +4,13 @@
 ![Github CI](https://github.com/osugikoji/compose-playground/actions/workflows/main-ci.yml/badge.svg)
 [![codecov](https://codecov.io/gh/osugikoji/compose-playground/branch/master/graph/badge.svg?token=17JWGHTBJ1)](https://codecov.io/gh/osugikoji/compose-playground)
 
-# Jetpack Compose Playground
+# Jetpack Compose Playground (Working in Progress 🚧)
 
 This repository contains a set of features that attempts to use the latest libraries and tools. Try to follow Android design and development best practices and is intended to be a useful reference for developers.
 
 Each feature has two modules, one originally made with XML and another with Jetpack Compose, so you can see the difference between them and help you learn and understand more about Compose in Android.
+
+The app is currently a work in progress and is not yet available on the Play Store. More features will come out soon!
 
 ## 🧬 Features
 
