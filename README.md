@@ -1,6 +1,8 @@
 ![platform](https://shields.io/badge/platform-android-green.svg)
 ![min-API](https://shields.io/badge/min--API-23-brightgreen.svg)
 ![max-API](https://shields.io/badge/max--API-31-brightgreen.svg)
+![Github CI](https://github.com/osugikoji/compose-playground/actions/workflows/main-ci.yml/badge.svg)
+[![codecov](https://codecov.io/gh/osugikoji/compose-playground/branch/master/graph/badge.svg?token=17JWGHTBJ1)](https://codecov.io/gh/osugikoji/compose-playground)
 
 # Jetpack Compose Playground
 
