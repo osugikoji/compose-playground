@@ -2,6 +2,7 @@ package com.playground.transaction.presentation.sendtransaction
 
 import com.playground.test.espresso.EspressoAction
 import com.playground.test.espresso.EspressoAssertion
+import com.playground.test.utils.retryer
 import com.playground.transaction.R
 
 object SendTransactionRobot {
@@ -46,7 +47,7 @@ object SendTransactionRobot {
 
     fun verifyErrorMessageHasBeenShown(): SendTransactionRobot {
         val expectedText = "This mock exchange data error behaviour."
-        EspressoAssertion.isVisible(expectedText)
+        retryer {EspressoAssertion.isVisible(expectedText) }
         return this
     }
 
