@@ -8,6 +8,7 @@ import com.playground.transaction.compose.presentation.navigation.SendTransactio
 import io.mockk.coEvery
 import io.mockk.mockk
 import java.math.BigDecimal
+import java.util.Locale
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -28,6 +29,8 @@ class SendTransactionViewModelTest {
     @Before
     fun setup() {
         viewModel = SendTransactionViewModel(transactionUseCases)
+        val locale = Locale.ENGLISH
+        Locale.setDefault(locale)
     }
 
     @Test
@@ -83,12 +86,12 @@ class SendTransactionViewModelTest {
         } returns BigDecimal(5)
 
         // act
-        viewModel.transferValue.value = "US$ 1,00"
+        viewModel.transferValue.value = "$ 1,00"
         viewModel.setSelectedCountry(selectedCountry)
         viewModel.getExchangeValue()
 
         // assert
-        assertEquals("R$ 5,00", viewModel.exchangedMoney.value)
+        assertEquals("R$ 5.00", viewModel.exchangedMoney.value)
         assertEquals(SendTransactionRoute.SUMMARY, viewModel.navigation.value)
     }
 
@@ -118,7 +121,7 @@ class SendTransactionViewModelTest {
         } returns Unit
 
         // act
-        viewModel.transferValue.value = "US$ 1,00"
+        viewModel.transferValue.value = "$ 1,00"
         viewModel.setSelectedCountry(selectedCountry)
         viewModel.phone.value = "9999-6999"
         viewModel.sendTransaction()

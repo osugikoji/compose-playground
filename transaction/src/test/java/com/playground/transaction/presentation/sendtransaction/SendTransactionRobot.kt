@@ -47,7 +47,7 @@ object SendTransactionRobot {
 
     fun verifyErrorMessageHasBeenShown(): SendTransactionRobot {
         val expectedText = "This mock exchange data error behaviour."
-        retryer {EspressoAssertion.isVisible(expectedText) }
+        retryer { EspressoAssertion.isVisible(expectedText) }
         return this
     }
 
